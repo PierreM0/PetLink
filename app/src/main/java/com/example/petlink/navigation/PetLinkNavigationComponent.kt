@@ -20,6 +20,7 @@ import com.example.petlink.components.BottomNavigationBar
 fun PetLinkNavigationComponent() {
     val navController = rememberNavController()
 
+    /*
     LaunchedEffect(Unit) {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             // backQueue is public in 2.9.x — still valid
@@ -34,6 +35,7 @@ fun PetLinkNavigationComponent() {
             }
         }
     }
+    */
 
     Scaffold(
         bottomBar = { BottomNavigationBar(onIconClick = { route ->
