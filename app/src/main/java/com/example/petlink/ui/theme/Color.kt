@@ -2,10 +2,12 @@ package com.example.petlink.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val MainGreen = Color(0xFF2D7A4C)
+val SubGreen = Color(0xFF8EB486)
+val BackgroundGreen = Color(0xFFE9F6ED)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val Black = Color(0xFF000000)
+val DarkGray = Color(0xFF4A4A4A)
+val FormPreviousGray = Color(0xFFEDEDED)
+val LightGray = Color(0xFFFBFBFB)
+val White = Color(0xFFFFFFFF)
