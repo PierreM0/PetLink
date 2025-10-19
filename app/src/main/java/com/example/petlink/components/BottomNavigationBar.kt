@@ -1,5 +1,6 @@
 package com.example.petlink.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,12 +14,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.petlink.R
+import com.example.petlink.ui.theme.LightGray
 
 @Composable
 fun BottomNavigationBar() {
     BottomAppBar {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.background(LightGray).fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             IconButton(onClick = {}) {
