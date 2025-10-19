@@ -27,7 +27,7 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
             modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            IconButton(onClick = { onIconClick(PetLinkScreens.HomeScreen.title) }) {
+            IconButton(onClick = { onIconClick(PetLinkScreens.HomeScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_home),
                     contentDescription = "Menu principal",
@@ -35,7 +35,7 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
                 )
             }
 
-            IconButton(onClick = { onIconClick(PetLinkScreens.AdoptionScreen.title) }) {
+            IconButton(onClick = { onIconClick(PetLinkScreens.AdoptionScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_adoption),
                     contentDescription = "Espace adoption",
@@ -43,7 +43,7 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
                 )
             }
 
-            IconButton(onClick = { onIconClick(PetLinkScreens.HealthScreen.title) }) {
+            IconButton(onClick = { onIconClick(PetLinkScreens.HealthScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_carnet_sante),
                     contentDescription = "Carnet de santé",
@@ -51,7 +51,7 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
                 )
             }
 
-            IconButton(onClick = { onIconClick(PetLinkScreens.BlogScreen.title) }) {
+            IconButton(onClick = { onIconClick(PetLinkScreens.BlogScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_blog),
                     contentDescription = "Blog",
@@ -59,7 +59,7 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
                 )
             }
 
-            IconButton(onClick = { onIconClick(PetLinkScreens.VeterinaryScreen.title) }) {
+            IconButton(onClick = { onIconClick(PetLinkScreens.VeterinaryScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_veterinaires),
                     contentDescription = "Vétérinaires",

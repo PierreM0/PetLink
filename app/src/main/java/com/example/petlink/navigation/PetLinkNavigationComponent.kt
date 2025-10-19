@@ -24,25 +24,25 @@ fun PetLinkNavigationComponent() {
         Box(
             modifier = Modifier.fillMaxSize().padding(innerPadding)
         ) {
-            NavHost(navController = navController, startDestination = PetLinkScreens.HomeScreen.title) {
-                composable(PetLinkScreens.HomeScreen.title) {
-                    Text("home")
+            NavHost(navController = navController, startDestination = PetLinkScreens.HomeScreen.route) {
+                composable(PetLinkScreens.HomeScreen.route) {
+                    Text(PetLinkScreens.HomeScreen.title)
                 }
 
-                composable(PetLinkScreens.AdoptionScreen.title) {
-                    Text("espace adoption")
+                composable(PetLinkScreens.AdoptionScreen.route) {
+                    Text(PetLinkScreens.AdoptionScreen.title)
                 }
 
-                composable(PetLinkScreens.HealthScreen.title) {
-                    Text("carnet de santé")
+                composable(PetLinkScreens.HealthScreen.route) {
+                    Text(PetLinkScreens.HealthScreen.title)
                 }
 
-                composable(PetLinkScreens.BlogScreen.title) {
-                    Text("blog")
+                composable(PetLinkScreens.BlogScreen.route) {
+                    Text(PetLinkScreens.BlogScreen.title)
                 }
 
-                composable(PetLinkScreens.VeterinaryScreen.title) {
-                    Text("vétérinaires")
+                composable(PetLinkScreens.VeterinaryScreen.route) {
+                    Text(PetLinkScreens.VeterinaryScreen.title)
                 }
             }
         }
