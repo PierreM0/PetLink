@@ -6,5 +6,7 @@ data class Animal (
     val description: String,
     val name: String,
     val location: String,
-    val refuge: String
+    val refuge: String,
+    val species: String,
+    val age: Int
 )
