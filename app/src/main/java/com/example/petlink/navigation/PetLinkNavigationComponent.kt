@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AdoptionScreen
+import com.example.petlink.screens.BlogScreen
 
 @SuppressLint("RestrictedApi")
 @Composable
@@ -61,7 +62,7 @@ fun PetLinkNavigationComponent() {
                 }
 
                 composable(PetLinkScreens.BlogScreen.route) {
-                    Text(PetLinkScreens.BlogScreen.title)
+                    BlogScreen()
                 }
 
                 composable(PetLinkScreens.VeterinaryScreen.route) {
