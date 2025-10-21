@@ -14,12 +14,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.example.petlink.components.Dropdown
 import com.example.petlink.components.SearchBar
 import com.example.petlink.ui.theme.BackgroundGreen
 
 @Composable
 fun AdoptionScreen() {
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
+    var speciesValue by remember { mutableStateOf("Toutes espèces") }
 
     Column(
         modifier = Modifier.fillMaxSize().background(BackgroundGreen)
@@ -29,5 +31,8 @@ fun AdoptionScreen() {
             onValueChange = { value -> locationSearchValue = value},
             placeholderText = "Rechercher par localisation",
             isLocationSearch = true)
+
+        Dropdown(value = speciesValue,
+            onValueChange = { value -> speciesValue = value })
     }
 }
