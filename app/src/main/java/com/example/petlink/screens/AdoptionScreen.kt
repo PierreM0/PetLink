@@ -1,11 +1,12 @@
 package com.example.petlink.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,17 +23,34 @@ import com.example.petlink.ui.theme.BackgroundGreen
 fun AdoptionScreen() {
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
     var speciesValue by remember { mutableStateOf("Toutes espèces") }
+    var ageRangeValue by remember { mutableStateOf("Tous âges")}
 
     Column(
         modifier = Modifier.fillMaxSize().background(BackgroundGreen)
             .padding(24.dp)
     ) {
-        SearchBar(value = locationSearchValue,
-            onValueChange = { value -> locationSearchValue = value},
-            placeholderText = "Rechercher par localisation",
-            isLocationSearch = true)
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            SearchBar(value = locationSearchValue,
+                onValueChange = { value -> locationSearchValue = value},
+                placeholderText = "Rechercher par localisation",
+                isLocationSearch = true)
 
-        Dropdown(value = speciesValue,
-            onValueChange = { value -> speciesValue = value })
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Dropdown(value = speciesValue,
+                    onValueChange = { value -> speciesValue = value },
+                    items = listOf("Toutes espèces", "Chats", "Chiens", "Lapins"),
+                    modifier = Modifier.weight(1f))
+
+                Dropdown(value = ageRangeValue,
+                    onValueChange = { value -> ageRangeValue = value },
+                    items = listOf("Tous âges", "Bébé", "Adulte", "Senior"),
+                    modifier = Modifier.weight(1f))
+            }
+        }
     }
 }
