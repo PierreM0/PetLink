@@ -15,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Dropdown(items: List<String> = listOf("Toutes espèces", "Chats", "Chiens", "Lapins")) { // TODO remove default param
+fun Dropdown(onValueChange: (String) -> Unit,
+             items: List<String> = listOf("Toutes espèces", "Chats", "Chiens", "Lapins")) { // TODO remove default param
     var isExpanded by remember { mutableStateOf(false) }
     var itemPosition by remember { mutableIntStateOf(0) }
 
