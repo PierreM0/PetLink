@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -41,14 +42,16 @@ android {
 }
 
 dependencies {
+    implementation(platform("io.ktor:ktor-bom:2.3.12"))
     implementation(libs.androidx.navigation.compose)
     implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("io.ktor:ktor-client-core:2.3.12")
-    implementation("io.ktor:ktor-client-android:2.3.12")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
-    implementation("io.ktor:ktor-client-logging:2.3.12")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation("io.ktor:ktor-client-core")
+    implementation("io.ktor:ktor-client-android")
+    implementation("io.ktor:ktor-client-content-negotiation")
+    implementation("io.ktor:ktor-client-logging")
+    implementation("io.ktor:ktor-client-serialization")
+    implementation("io.ktor:ktor-serialization-kotlinx-json")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
     implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
