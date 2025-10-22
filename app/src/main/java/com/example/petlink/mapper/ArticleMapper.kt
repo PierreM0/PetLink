@@ -5,8 +5,8 @@ import com.example.petlink.model.SingleArticleDto
 import java.time.LocalDate
 
 class ArticleMapper {
-    fun mapArticleDtoToArticle(movieDto: SingleArticleDto): Article {
-        return with(movieDto) {
+    fun mapArticleDtoToArticle(articleDto: SingleArticleDto): Article {
+        return with(articleDto) {
             Article(
                 id = id,
                 title = title,
