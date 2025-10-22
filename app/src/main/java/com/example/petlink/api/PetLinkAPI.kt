@@ -29,7 +29,7 @@ object PetLinkAPI {
 
     suspend fun getArticles(): List<Article> {
         if (!this::articles.isInitialized) {
-            val articlesData: List<ArticleDTO> = KtorClient.httpCall(HttpMethod.Get, ANIMAL_ENDPOINT)
+            val articlesData: List<ArticleDTO> = KtorClient.httpCall(HttpMethod.Get, ARTICLE_ENDPOINT)
             articles = articlesData.map { articleMapper.mapArticleDtoToArticle(it) }
         }
 
