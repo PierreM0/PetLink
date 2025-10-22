@@ -36,7 +36,10 @@ import kotlinx.coroutines.delay
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
-val dotenv = dotenv()
+val dotenv = dotenv {
+    directory = "/assets"
+    filename = "env"
+}
 val ip_address = dotenv["IP_ADDRESS"]
 
 object KtorClient {

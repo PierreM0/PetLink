@@ -15,4 +15,4 @@
 local.properties
 /.idea/deploymentTargetSelector.xml
 /.idea/vcs.xml
-.env
+app/assets/.env
