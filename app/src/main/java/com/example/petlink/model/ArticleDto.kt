@@ -1,7 +1,6 @@
 package com.example.petlink.model
 
 import kotlinx.serialization.Serializable
-import java.util.Date
 
 @Serializable
 data class ArticleDto(
@@ -14,5 +13,5 @@ data class SingleArticleDto (
     val title: String,
     val content: String,
     val imageUrl: String,
-    val creationDate: Date
+    val creationDate: String
 )

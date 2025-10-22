@@ -1,10 +1,10 @@
 package com.example.petlink.model
 
-import java.util.Date
+import java.time.LocalDate
 
 data class Article (
     val id : Int,
-    val date : Date,
+    val date : LocalDate,
     val title : String,
     val content : String,
     val imageUrl : String
