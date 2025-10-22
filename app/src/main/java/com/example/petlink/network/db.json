@@ -1,0 +1,115 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "imageUrl": "https://cataas.com/cat?type=square",
+      "description": "Petit chat tigré curieux et affectueux, adore jouer avec des balles de laine.",
+      "name": "Moka",
+      "location": "Paris",
+      "refuge": "Refuge Les Pattes Heureuses",
+      "species": "cat",
+      "birthdate": "2023-11-15",
+      "refugeNumber": "(212) 555-0192"
+    },
+    {
+      "id": 2,
+      "imageUrl": "https://random.dog/woof.json",
+      "description": "Chien joueur et dynamique, aime courir dans les parcs et recevoir des caresses.",
+      "name": "Tango",
+      "location": "Lyon",
+      "refuge": "Les Compagnons du Cœur",
+      "species": "dog",
+      "birthdate": "2022-07-09",
+      "refugeNumber": "(334) 555-0674"
+    },
+    {
+      "id": 3,
+      "imageUrl": "https://placekitten.com/400/400",
+      "description": "Chat noir calme et mystérieux, parfait pour un foyer tranquille.",
+      "name": "Shadow",
+      "location": "Marseille",
+      "refuge": "La Maison des Félins",
+      "species": "cat",
+      "birthdate": "2024-03-02",
+      "refugeNumber": "(450) 555-2034"
+    },
+    {
+      "id": 4,
+      "imageUrl": "https://place-puppy.com/400x400",
+      "description": "Jeune chien affectueux, très sociable et facile à éduquer.",
+      "name": "Rex",
+      "location": "Grenoble",
+      "refuge": "Refuge Montagne Douce",
+      "species": "dog",
+      "birthdate": "2021-09-18",
+      "refugeNumber": "(517) 555-8421"
+    },
+    {
+      "id": 5,
+      "imageUrl": "https://placekitten.com/401/401",
+      "description": "Chatte tachetée très joueuse et câline, adore les enfants.",
+      "name": "Luna",
+      "location": "Metz",
+      "refuge": "La Plaine des Geais",
+      "species": "cat",
+      "birthdate": "2025-01-22",
+      "refugeNumber": "(681) 555-3019"
+    },
+    {
+      "id": 6,
+      "imageUrl": "https://placebear.com/400/400",
+      "description": "Petit lapin nain curieux, aime les carottes et les câlins.",
+      "name": "Noisette",
+      "location": "Toulouse",
+      "refuge": "Refuge Les Oreilles Douces",
+      "species": "bunny",
+      "birthdate": "2023-06-30",
+      "refugeNumber": "(320) 555-1189"
+    },
+    {
+      "id": 7,
+      "imageUrl": "https://place-puppy.com/401x401",
+      "description": "Chiot plein d'énergie, adore courir et jouer à la balle.",
+      "name": "Buddy",
+      "location": "Bordeaux",
+      "refuge": "Les Compagnons Fidèles",
+      "species": "dog",
+      "birthdate": "2024-02-11",
+      "refugeNumber": "(390) 555-7754"
+    },
+    {
+      "id": 8,
+      "imageUrl": "https://cataas.com/cat/says/hello",
+      "description": "Chat gris très doux, aime observer le monde depuis la fenêtre.",
+      "name": "Grisou",
+      "location": "Nice",
+      "refuge": "Refuge du Soleil",
+      "species": "cat",
+      "birthdate": "2023-05-08",
+      "refugeNumber": "(278) 555-9921"
+    },
+    {
+      "id": 9,
+      "imageUrl": "https://placekitten.com/402/402",
+      "description": "Lapine blanche très gentille, adore se faire brosser.",
+      "name": "Flocon",
+      "location": "Strasbourg",
+      "refuge": "Les Oreilles Douces",
+      "species": "bunny",
+      "birthdate": "2022-12-20",
+      "refugeNumber": "(356) 555-6438"
+    },
+    {
+      "id": 10,
+      "imageUrl": "https://random.dog/woof.json",
+      "description": "Chienne affectueuse qui adore les promenades en forêt.",
+      "name": "Bella",
+      "location": "Nantes",
+      "refuge": "Les Pattes Solidaires",
+      "species": "dog",
+      "birthdate": "2021-10-05",
+      "refugeNumber": "(498) 555-4523"
+    }
+  ],
+  "articles": []
+}

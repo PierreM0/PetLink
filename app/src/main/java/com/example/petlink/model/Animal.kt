@@ -1,5 +1,7 @@
 package com.example.petlink.model
 
+import android.net.Uri
+
 data class Animal (
     val id: Int,
     val imageUrl: String,
@@ -8,5 +10,6 @@ data class Animal (
     val location: String,
     val refuge: String,
     val species: String,
-    val age: Int
+    val age: Int,
+    val refugeNumber: Uri
 )
