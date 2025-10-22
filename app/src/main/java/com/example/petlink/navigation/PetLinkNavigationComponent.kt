@@ -1,14 +1,13 @@
 package com.example.petlink.navigation
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,11 +15,15 @@ import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogScreen
+import com.example.petlink.viewmodels.ArticleState
+import com.example.petlink.viewmodels.ArticleViewModel
 
 @SuppressLint("RestrictedApi")
 @Composable
-fun PetLinkNavigationComponent() {
+fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
     val navController = rememberNavController()
+
+    val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
 
     /*
     LaunchedEffect(Unit) {
@@ -62,7 +65,7 @@ fun PetLinkNavigationComponent() {
                 }
 
                 composable(PetLinkScreens.BlogScreen.route) {
-                    BlogScreen()
+                    BlogScreen(articleState)
                 }
 
                 composable(PetLinkScreens.VeterinaryScreen.route) {
