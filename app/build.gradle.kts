@@ -49,6 +49,7 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:2.3.12")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

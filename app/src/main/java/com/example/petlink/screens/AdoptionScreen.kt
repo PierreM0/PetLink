@@ -1,5 +1,6 @@
 package com.example.petlink.screens
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import com.example.petlink.components.Dropdown
 import com.example.petlink.components.SearchBar
 import com.example.petlink.model.Animal
 import com.example.petlink.ui.theme.BackgroundGreen
+import androidx.core.net.toUri
 
 @Composable
 fun AdoptionScreen() {
@@ -72,7 +74,7 @@ fun AdoptionScreen() {
         // TODO à remove
         val animal = Animal(id = 0, imageUrl = "https://cataas.com/cat?type=square",
             description = "Un chat mignon", name = "Maxou", location = "Metz",
-            refuge = "Refuge lambda", species = "Chat", age = 5)
+            refuge = "Refuge lambda", species = "Chat", age = 5, refugeNumber = "".toUri())
 
         // Nombre de résultats // TODO vrai nb de résultats
         Text(text = "5 résultats", fontSize = 24.sp, fontWeight = FontWeight.Medium)
