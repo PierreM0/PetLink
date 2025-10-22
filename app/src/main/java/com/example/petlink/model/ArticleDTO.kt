@@ -3,12 +3,7 @@ package com.example.petlink.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ArticleDto(
-    val articles: List<SingleArticleDto>
-)
-
-@Serializable
-data class SingleArticleDto (
+data class ArticleDTO (
     val id: Int,
     val title: String,
     val content: String,

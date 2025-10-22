@@ -1,11 +1,11 @@
 package com.example.petlink.mapper
 
 import com.example.petlink.model.Article
-import com.example.petlink.model.SingleArticleDto
+import com.example.petlink.model.ArticleDTO
 import java.time.LocalDate
 
 class ArticleMapper {
-    fun mapArticleDtoToArticle(articleDto: SingleArticleDto): Article {
+    fun mapArticleDtoToArticle(articleDto: ArticleDTO): Article {
         return with(articleDto) {
             Article(
                 id = id,
