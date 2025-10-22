@@ -9,13 +9,13 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 
 class AnimalMapper {
-    fun mapAnimalDtoToAnimal(animalDto: AnimalDTO) {
-        return with(animalDto) {
+    fun mapAnimalDtoToAnimal(animalDto: AnimalDTO): Animal {
+        with(animalDto) {
             val birthDate = LocalDate.parse(birthdate, DateTimeFormatter.ISO_DATE)
             val today = LocalDate.now()
             val age = Period.between(birthDate, today).years
 
-            Animal(
+            return Animal(
                 id = id,
                 imageUrl = imageUrl,
                 description = description,
