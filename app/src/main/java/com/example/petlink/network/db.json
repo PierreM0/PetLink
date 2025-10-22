@@ -111,5 +111,41 @@
       "refugeNumber": "(498) 555-4523"
     }
   ],
-  "articles": []
+  "articles": [
+    {
+      "id": 1,
+      "title": "Pourquoi adopter un animal en refuge ?",
+      "content": "Adopter un animal dans un refuge, c’est offrir une seconde chance à un être qui a souvent connu l’abandon. Les refuges comme Les Pattes Heureuses ou La Maison des Félins prennent soin d’eux chaque jour, mais rien ne vaut la chaleur d’un foyer. En adoptant, vous sauvez une vie et libérez une place pour un autre animal dans le besoin.",
+      "imageUrl": "https://images.unsplash.com/photo-1601758065898-74e7f14b3c9f",
+      "creationDate": "2024-06-10"
+    },
+    {
+      "id": 2,
+      "title": "Comment bien préparer l’arrivée d’un chiot ?",
+      "content": "Avant d’accueillir un chiot comme Buddy ou Rex, il est important d’aménager un espace sécurisé et confortable. Prévoyez une couverture, des jouets adaptés et de la patience. Les premiers jours sont cruciaux pour créer un lien de confiance avec votre nouveau compagnon.",
+      "imageUrl": "https://images.unsplash.com/photo-1601758123927-1965fd1dfc4e",
+      "creationDate": "2024-09-22"
+    },
+    {
+      "id": 3,
+      "title": "Les chats et la cohabitation en appartement",
+      "content": "Les chats comme Moka ou Grisou s’adaptent très bien à la vie en appartement, à condition d’avoir des zones de repos, de jeu et d’observation. Un arbre à chat, une fenêtre avec vue et un peu d’attention quotidienne suffisent pour leur bien-être.",
+      "imageUrl": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6",
+      "creationDate": "2025-01-15"
+    },
+    {
+      "id": 4,
+      "title": "Les lapins de compagnie : de vrais petits trésors",
+      "content": "Souvent méconnus, les lapins comme Noisette et Flocon sont d’excellents compagnons. Ils demandent un environnement calme, une alimentation riche en foin et des câlins réguliers. Adopter un lapin, c’est s’engager à lui offrir douceur et attention.",
+      "imageUrl": "https://images.unsplash.com/photo-1561948955-570b270e7c36",
+      "creationDate": "2024-12-03"
+    },
+    {
+      "id": 5,
+      "title": "Les refuges animaliers : des héros du quotidien",
+      "content": "Derrière chaque adoption réussie se cache le travail de bénévoles passionnés. Les refuges comme Les Compagnons du Cœur et Les Pattes Solidaires s’occupent de nourrir, soigner et socialiser les animaux abandonnés, tout en cherchant la famille parfaite pour eux.",
+      "imageUrl": "https://images.unsplash.com/photo-1558944351-94ae1f3a5e7e",
+      "creationDate": "2025-02-25"
+    }
+  ]
 }
