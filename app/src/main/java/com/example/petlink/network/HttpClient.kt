@@ -2,6 +2,7 @@ package com.example.petlink.network
 
 import android.content.res.Resources.NotFoundException
 import android.util.Log
+import io.github.cdimascio.dotenv.dotenv
 import io.ktor.client.HttpClient
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.body
@@ -34,6 +35,9 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.delay
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+
+val dotenv = dotenv()
+val ip_address = dotenv["IP_ADDRESS"]
 
 object KtorClient {
 
@@ -95,7 +99,7 @@ object KtorClient {
         endpoint: String,
         requestBody: In? = null,
     ): Out {
-        val baseUrl = "http://192.168.1.99:3000/"
+        val baseUrl = "http://${ip_address}:3000/"
         //val baseUrl = "http://10.11.110.31:3000/"
         val url = baseUrl + endpoint
 
