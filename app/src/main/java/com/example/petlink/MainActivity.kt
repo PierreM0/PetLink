@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.petlink.navigation.PetLinkNavigationComponent
 import com.example.petlink.ui.theme.PetLinkTheme
+import com.example.petlink.viewmodels.AnimalViewModel
 import com.example.petlink.viewmodels.ArticleViewModel
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +18,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             PetLinkTheme {
                 val articleViewModel = ArticleViewModel()
-                PetLinkNavigationComponent(articleViewModel)
+                val animalViewModel = AnimalViewModel()
+                PetLinkNavigationComponent(articleViewModel, animalViewModel)
             }
         }
     }

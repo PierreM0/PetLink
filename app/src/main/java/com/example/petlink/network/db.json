@@ -7,7 +7,7 @@
       "name": "Moka",
       "location": "Paris",
       "refuge": "Refuge Les Pattes Heureuses",
-      "species": "cat",
+      "species": "Chat",
       "birthdate": "2023-11-15",
       "refugeNumber": "(212) 555-0192"
     },
@@ -18,7 +18,7 @@
       "name": "Tango",
       "location": "Lyon",
       "refuge": "Les Compagnons du Cœur",
-      "species": "dog",
+      "species": "Chien",
       "birthdate": "2022-07-09",
       "refugeNumber": "(334) 555-0674"
     },
@@ -29,7 +29,7 @@
       "name": "Shadow",
       "location": "Marseille",
       "refuge": "La Maison des Félins",
-      "species": "cat",
+      "species": "Chat",
       "birthdate": "2024-03-02",
       "refugeNumber": "(450) 555-2034"
     },
@@ -40,7 +40,7 @@
       "name": "Rex",
       "location": "Grenoble",
       "refuge": "Refuge Montagne Douce",
-      "species": "dog",
+      "species": "Chien",
       "birthdate": "2021-09-18",
       "refugeNumber": "(517) 555-8421"
     },
@@ -51,7 +51,7 @@
       "name": "Luna",
       "location": "Metz",
       "refuge": "La Plaine des Geais",
-      "species": "cat",
+      "species": "Chat",
       "birthdate": "2025-01-22",
       "refugeNumber": "(681) 555-3019"
     },
@@ -62,7 +62,7 @@
       "name": "Noisette",
       "location": "Toulouse",
       "refuge": "Refuge Les Oreilles Douces",
-      "species": "bunny",
+      "species": "Lapin",
       "birthdate": "2023-06-30",
       "refugeNumber": "(320) 555-1189"
     },
@@ -73,7 +73,7 @@
       "name": "Buddy",
       "location": "Bordeaux",
       "refuge": "Les Compagnons Fidèles",
-      "species": "dog",
+      "species": "Chien",
       "birthdate": "2024-02-11",
       "refugeNumber": "(390) 555-7754"
     },
@@ -84,7 +84,7 @@
       "name": "Grisou",
       "location": "Nice",
       "refuge": "Refuge du Soleil",
-      "species": "cat",
+      "species": "Chat",
       "birthdate": "2023-05-08",
       "refugeNumber": "(278) 555-9921"
     },
@@ -95,7 +95,7 @@
       "name": "Flocon",
       "location": "Strasbourg",
       "refuge": "Les Oreilles Douces",
-      "species": "bunny",
+      "species": "Lapin",
       "birthdate": "2022-12-20",
       "refugeNumber": "(356) 555-6438"
     },
@@ -106,7 +106,7 @@
       "name": "Bella",
       "location": "Nantes",
       "refuge": "Les Pattes Solidaires",
-      "species": "dog",
+      "species": "Chien",
       "birthdate": "2021-10-05",
       "refugeNumber": "(498) 555-4523"
     }

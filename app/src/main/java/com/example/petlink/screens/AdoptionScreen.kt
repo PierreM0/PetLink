@@ -3,6 +3,7 @@ package com.example.petlink.screens
 import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,12 +12,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -28,9 +32,12 @@ import com.example.petlink.components.SearchBar
 import com.example.petlink.model.Animal
 import com.example.petlink.ui.theme.BackgroundGreen
 import androidx.core.net.toUri
+import com.example.petlink.viewmodels.AnimalState
+
+// TODO filtres dans le viewmodel
 
 @Composable
-fun AdoptionScreen() {
+fun AdoptionScreen(animalState: AnimalState) {
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
     var speciesValue by remember { mutableStateOf("Toutes espèces") }
     var ageRangeValue by remember { mutableStateOf("Tous âges")}
@@ -58,7 +65,7 @@ fun AdoptionScreen() {
                 // Filtre espèces // TODO rendre meilleur les filtres pour les VMs
                 Dropdown(value = speciesValue,
                     onValueChange = { value -> speciesValue = value },
-                    items = listOf("Toutes espèces", "Chats", "Chiens", "Lapins"),
+                    items = listOf("Toutes espèces", "Chat", "Chien", "Lapin"),
                     modifier = Modifier.weight(1f))
 
                 // Filtre âges // TODO rendre meilleur les filtres pour les VMs
@@ -71,32 +78,32 @@ fun AdoptionScreen() {
 
         Spacer(Modifier.height(32.dp))
 
-        // TODO à remove
-        val animal = Animal(id = 0, imageUrl = "https://cataas.com/cat?type=square",
-            description = "Un chat mignon", name = "Maxou", location = "Metz",
-            refuge = "Refuge lambda", species = "Chat", age = 5, refugeNumber = "".toUri())
+        if (animalState.isLoading) {
+            Box(modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
+        }
+        else {
+            val animals = animalState.animals
+            val filteredAnimals = animals.filter {
+                it.location.lowercase().contains(locationSearchValue.text.lowercase())
+            }.filter {
+                if (speciesValue != "Toutes espèces") {
+                    it.species.lowercase() == speciesValue.lowercase()
+                } else {
+                    true
+                }
+            }
 
-        // Nombre de résultats // TODO vrai nb de résultats
-        Text(text = "5 résultats", fontSize = 24.sp, fontWeight = FontWeight.Medium)
+            Text(text = "${filteredAnimals.size} résultats", fontSize = 24.sp, fontWeight = FontWeight.Medium)
 
-        Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(16.dp))
 
-        // Résultats (les cards d'animaux) // TODO vrais animaux à filtrer
-        LazyColumn {
-            item {
-                AnimalCard(animal)
-            }
-            item {
-                AnimalCard(animal)
-            }
-            item {
-                AnimalCard(animal)
-            }
-            item {
-                AnimalCard(animal)
-            }
-            item {
-                AnimalCard(animal)
+            LazyColumn {
+                items(filteredAnimals) { animal ->
+                    AnimalCard(animal)
+                }
             }
         }
     }

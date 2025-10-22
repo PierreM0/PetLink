@@ -15,15 +15,19 @@ import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogScreen
+import com.example.petlink.viewmodels.AnimalState
+import com.example.petlink.viewmodels.AnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
 @SuppressLint("RestrictedApi")
 @Composable
-fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
+fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel,
+                               animalViewModel: AnimalViewModel) {
     val navController = rememberNavController()
 
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
+    val animalState: AnimalState = animalViewModel.stateFlow.collectAsState().value
 
     /*
     LaunchedEffect(Unit) {
@@ -57,7 +61,7 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
                 }
 
                 composable(PetLinkScreens.AdoptionScreen.route) {
-                    AdoptionScreen()
+                    AdoptionScreen(animalState)
                 }
 
                 composable(PetLinkScreens.HealthScreen.route) {
