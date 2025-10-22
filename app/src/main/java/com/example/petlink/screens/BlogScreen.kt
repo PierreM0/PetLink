@@ -39,7 +39,7 @@ fun BlogScreen() {
         // TODO faire avec ArticleState avec ktor
         var articles = mutableListOf<Article>()
         for(i in 1..5)
-            articles.add( Article(1, Date(10),"Un superbe titre","Un superbe article","https://placedog.net/"+Random.nextInt(200, 801)))
+            articles.add( Article(1, Date(10),"Un superbe titre qui est malheureusement beaucoup trop long","Un superbe article très long qui prend vraiment beaucoup de place sur plusieurs lignes tellement il est long","https://placedog.net/"+Random.nextInt(200, 801)))
         val filteredList: List<Article> = articles.filter {
             it.title.lowercase().contains(titleSearchValue.text.lowercase())
         }
