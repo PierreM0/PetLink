@@ -21,13 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.petlink.components.ArticleCard
+import com.example.petlink.components.RawButton
 import com.example.petlink.components.SearchBar
 import com.example.petlink.model.Article
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.viewmodels.ArticleState
 
 @Composable
-fun BlogScreen(articleState : ArticleState) {
+fun BlogScreen(articleState : ArticleState, onDetails: (Article) -> Unit) {
     var titleSearchValue by remember { mutableStateOf(TextFieldValue("") )}
     Column(
         modifier = Modifier.fillMaxSize().background(BackgroundGreen).padding(24.dp)
@@ -53,9 +54,9 @@ fun BlogScreen(articleState : ArticleState) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(filteredList) { article ->
-                    //Button(onClick = { onDetails(article) }) {
+                    RawButton(onClick = { onDetails(article) }) {
                         ArticleCard(article)
-                    //}
+                    }
                 }
             }
         }
