@@ -15,12 +15,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AdoptionScreen
+import com.example.petlink.screens.BlogDetailsScreen
 import com.example.petlink.screens.BlogScreen
 import com.example.petlink.viewmodels.AnimalState
 import com.example.petlink.viewmodels.AnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
-import ufr.mim.netfloux.screens.BlogDetailsScreen
 
 @SuppressLint("RestrictedApi")
 @Composable
