@@ -5,5 +5,6 @@ enum class PetLinkScreens(val route: String, val title: String) {
     AdoptionScreen("adoption", "Espace adoption"),
     HealthScreen("health", "Carnet de santé"),
     BlogScreen("blog", "Blog"),
+    BlogDetailsScreen("blogDetails", "BlogDetails"),
     VeterinaryScreen("veterinary", "Vétérinaires")
 }

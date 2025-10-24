@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -19,6 +20,7 @@ import com.example.petlink.viewmodels.AnimalState
 import com.example.petlink.viewmodels.AnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
+import ufr.mim.netfloux.screens.BlogDetailsScreen
 
 @SuppressLint("RestrictedApi")
 @Composable
@@ -28,6 +30,12 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel,
 
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
     val animalState: AnimalState = animalViewModel.stateFlow.collectAsState().value
+
+    LaunchedEffect(articleState.selectedArticle) {
+        if (articleState.selectedArticle != null) {
+            navController.navigate(PetLinkScreens.BlogDetailsScreen.name)
+        }
+    }
 
     /*
     LaunchedEffect(Unit) {
@@ -69,11 +77,18 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel,
                 }
 
                 composable(PetLinkScreens.BlogScreen.route) {
-                    BlogScreen(articleState)
+                    BlogScreen(articleState,
+                        onDetails = { article ->
+                            articleViewModel.setSelectedArticle(article)
+                        })
                 }
 
                 composable(PetLinkScreens.VeterinaryScreen.route) {
                     Text(PetLinkScreens.VeterinaryScreen.title)
+                }
+
+                composable(PetLinkScreens.BlogDetailsScreen.name) {
+                    BlogDetailsScreen(articleState)
                 }
             }
         }
