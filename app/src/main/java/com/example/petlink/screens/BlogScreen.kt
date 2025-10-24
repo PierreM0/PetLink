@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -36,6 +38,8 @@ fun BlogScreen(articleState : ArticleState) {
             placeholderText = "Rechercher par titre",
             isLocationSearch = false
         )
+
+        Spacer(Modifier.height(32.dp))
 
         if (articleState.isLoading) {
             Box(modifier = Modifier.fillMaxSize(),
