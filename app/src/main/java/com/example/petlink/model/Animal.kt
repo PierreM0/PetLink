@@ -1,6 +1,7 @@
 package com.example.petlink.model
 
 import android.net.Uri
+import java.time.LocalDate
 
 data class Animal (
     val id: Int,
@@ -11,5 +12,6 @@ data class Animal (
     val refuge: String,
     val species: String,
     val age: Int,
-    val refugeNumber: Uri
+    val refugeNumber: Uri,
+    val publicationDate: LocalDate
 )

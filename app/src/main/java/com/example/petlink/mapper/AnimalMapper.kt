@@ -24,7 +24,8 @@ class AnimalMapper {
                 refuge = refuge,
                 species = species,
                 age = age,
-                refugeNumber = "tel:${refugeNumber}".toUri()
+                refugeNumber = "tel:${refugeNumber}".toUri(),
+                publicationDate = LocalDate.parse(publicationDate, DateTimeFormatter.ISO_DATE)
             )
         }
     }

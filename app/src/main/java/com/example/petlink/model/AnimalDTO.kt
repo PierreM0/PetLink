@@ -12,5 +12,6 @@ data class AnimalDTO (
     val refuge: String,
     val species: String,
     val birthdate: String,
-    val refugeNumber: String
+    val refugeNumber: String,
+    val publicationDate: String
 )
