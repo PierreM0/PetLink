@@ -18,8 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PetLinkTheme {
                 val articleViewModel = ArticleViewModel()
-                val animalViewModel = AnimalViewModel()
-                PetLinkNavigationComponent(articleViewModel, animalViewModel)
+                PetLinkNavigationComponent(articleViewModel)
             }
         }
     }

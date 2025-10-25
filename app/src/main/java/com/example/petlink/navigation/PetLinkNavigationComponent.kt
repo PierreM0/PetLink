@@ -24,12 +24,10 @@ import com.example.petlink.viewmodels.ArticleViewModel
 
 @SuppressLint("RestrictedApi")
 @Composable
-fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel,
-                               animalViewModel: AnimalViewModel) {
+fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
     val navController = rememberNavController()
 
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
-    val animalState: AnimalState = animalViewModel.stateFlow.collectAsState().value
 
     LaunchedEffect(articleState.selectedArticle) {
         if (articleState.selectedArticle != null) {
@@ -69,7 +67,7 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel,
                 }
 
                 composable(PetLinkScreens.AdoptionScreen.route) {
-                    AdoptionScreen(animalState)
+                    AdoptionScreen()
                 }
 
                 composable(PetLinkScreens.HealthScreen.route) {
