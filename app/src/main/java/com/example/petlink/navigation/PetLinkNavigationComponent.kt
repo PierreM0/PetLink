@@ -17,8 +17,6 @@ import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogDetailsScreen
 import com.example.petlink.screens.BlogScreen
-import com.example.petlink.viewmodels.AnimalState
-import com.example.petlink.viewmodels.AnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
@@ -86,7 +84,7 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
                 }
 
                 composable(PetLinkScreens.BlogDetailsScreen.name) {
-                    BlogDetailsScreen(articleState)
+                    BlogDetailsScreen(articleState, onGoBack = { navController.popBackStack() })
                 }
             }
         }
