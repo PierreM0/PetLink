@@ -17,8 +17,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PetLinkTheme {
-                val articleViewModel = ArticleViewModel()
-                PetLinkNavigationComponent(articleViewModel)
+                PetLinkNavigationComponent()
             }
         }
     }

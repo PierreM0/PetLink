@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -27,18 +28,24 @@ import com.example.petlink.screens.BlogDetailsScreen
 import com.example.petlink.screens.BlogScreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
+import com.example.petlink.viewmodels.AnimalState
+import com.example.petlink.viewmodels.AnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("RestrictedApi")
 @Composable
-fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
+fun PetLinkNavigationComponent() {
     val navController = rememberNavController()
 
+    val animalViewModel: AnimalViewModel = viewModel()
+    val articleViewModel: ArticleViewModel = viewModel()
+
+    val animalState: AnimalState = animalViewModel.stateFlow.collectAsState().value
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
 
-    var topBarName by remember { mutableStateOf("Accueil - PetLink") }
+    var topBarName by remember { mutableStateOf(PetLinkScreens.HomeScreen.title) }
 
     /*
     LaunchedEffect(Unit) {
@@ -88,7 +95,11 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
 
                 composable(PetLinkScreens.AdoptionScreen.route) {
                     topBarName = PetLinkScreens.AdoptionScreen.title
-                    AdoptionScreen()
+                    AdoptionScreen(animalViewModel,
+                        onDetails = { animal ->
+                            animalViewModel.setSelectedAnimal(animal)
+                            navController.navigate(PetLinkScreens.AdoptionDetailsScreen.route)
+                        })
                 }
 
                 composable(PetLinkScreens.HealthScreen.route) {
@@ -100,7 +111,7 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
                     BlogScreen(articleState,
                         onDetails = { article ->
                             articleViewModel.setSelectedArticle(article)
-                            navController.navigate(PetLinkScreens.BlogDetailsScreen.name)
+                            navController.navigate(PetLinkScreens.BlogDetailsScreen.route)
                         })
                 }
 
@@ -108,7 +119,7 @@ fun PetLinkNavigationComponent(articleViewModel: ArticleViewModel) {
                     topBarName = PetLinkScreens.VeterinaryScreen.title
                 }
 
-                composable(PetLinkScreens.BlogDetailsScreen.name) {
+                composable(PetLinkScreens.BlogDetailsScreen.route) {
                     BlogDetailsScreen(articleState, onGoBack = { navController.popBackStack() })
                 }
             }

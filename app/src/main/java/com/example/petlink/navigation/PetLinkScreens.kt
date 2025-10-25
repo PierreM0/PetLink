@@ -3,6 +3,7 @@ package com.example.petlink.navigation
 enum class PetLinkScreens(val route: String, val title: String) {
     HomeScreen("home", "PetLink"),
     AdoptionScreen("adoption", "Espace adoption"),
+    AdoptionDetailsScreen("adoptionDetails", "Espace adoption"),
     HealthScreen("health", "Carnet de santé"),
     BlogScreen("blog", "Blog"),
     BlogDetailsScreen("blogDetails", "BlogDetails"),

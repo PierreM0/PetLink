@@ -1,6 +1,5 @@
 package com.example.petlink.screens
 
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,23 +28,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.AnimalCard
 import com.example.petlink.components.Dropdown
+import com.example.petlink.components.RawButton
 import com.example.petlink.components.SearchBar
 import com.example.petlink.model.Animal
+import com.example.petlink.model.AnimalAgeRange
+import com.example.petlink.model.AnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
-import androidx.core.net.toUri
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petlink.viewmodels.AnimalState
 import com.example.petlink.viewmodels.AnimalViewModel
 
 // TODO filtres dans le viewmodel
 
 @Composable
-fun AdoptionScreen(viewModel: AnimalViewModel = viewModel()) {
-    val animalState: AnimalState = viewModel.stateFlow.collectAsState().value
+fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (Animal) -> Unit) {
+    val animalState = animalViewModel.stateFlow.collectAsState().value
+
+    val animals = animalState.animals
 
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
-    var speciesValue by remember { mutableStateOf("Toutes espèces") }
-    var ageRangeValue by remember { mutableStateOf("Tous âges")}
+    var speciesValue by remember { mutableStateOf(animalState.filters.species.displayName) }
+    var ageRangeValue by remember { mutableStateOf(animalState.filters.ageRange.displayName)}
 
     // Contenu principal
     Column(
@@ -58,7 +60,10 @@ fun AdoptionScreen(viewModel: AnimalViewModel = viewModel()) {
         ) {
             // Barre de recherche par localisation
             SearchBar(value = locationSearchValue,
-                onValueChange = { value -> locationSearchValue = value},
+                onValueChange = {
+                    value -> locationSearchValue = value
+                    animalViewModel.setLocationFilter(value.text)
+                                },
                 placeholderText = "Rechercher par localisation",
                 isLocationSearch = true)
 
@@ -67,22 +72,29 @@ fun AdoptionScreen(viewModel: AnimalViewModel = viewModel()) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // Filtre espèces // TODO rendre meilleur les filtres pour les VMs
+                // Filtre espèces
                 Dropdown(value = speciesValue,
-                    onValueChange = { value -> speciesValue = value },
-                    items = listOf("Toutes espèces", "Chat", "Chien", "Lapin"),
+                    onValueChange = {
+                        value -> speciesValue = value
+                        animalViewModel.setSpeciesFilter(value)
+                                    },
+                    items = AnimalSpecies.getAllDisplayNames(),
                     modifier = Modifier.weight(1f))
 
-                // Filtre âges // TODO rendre meilleur les filtres pour les VMs
+                // Filtre âges
                 Dropdown(value = ageRangeValue,
-                    onValueChange = { value -> ageRangeValue = value },
-                    items = listOf("Tous âges", "Bébé", "Adulte", "Senior"),
+                    onValueChange = {
+                        value -> ageRangeValue = value
+                        animalViewModel.setAgeRangeFilter(value)
+                                    },
+                    items = AnimalAgeRange.getAllDisplayNames(),
                     modifier = Modifier.weight(1f))
             }
         }
 
         Spacer(Modifier.height(32.dp))
 
+        // Contenu principal (loading ou animals)
         if (animalState.isLoading) {
             Box(modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center) {
@@ -90,16 +102,7 @@ fun AdoptionScreen(viewModel: AnimalViewModel = viewModel()) {
             }
         }
         else {
-            val animals = animalState.animals
-            val filteredAnimals = animals.filter {
-                it.location.lowercase().contains(locationSearchValue.text.lowercase())
-            }.filter {
-                if (speciesValue != "Toutes espèces") {
-                    it.species.lowercase() == speciesValue.lowercase()
-                } else {
-                    true
-                }
-            }
+            val filteredAnimals = animalViewModel.getFilteredAnimals()
 
             Text(text = "${filteredAnimals.size} résultats", fontSize = 24.sp, fontWeight = FontWeight.Medium)
 
@@ -107,7 +110,9 @@ fun AdoptionScreen(viewModel: AnimalViewModel = viewModel()) {
 
             LazyColumn {
                 items(filteredAnimals) { animal ->
-                    AnimalCard(animal)
+                    RawButton(onClick = { onDetails(animal) }) {
+                        AnimalCard(animal)
+                    }
                 }
             }
         }

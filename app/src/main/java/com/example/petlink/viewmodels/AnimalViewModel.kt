@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petlink.api.PetLinkAPI
 import com.example.petlink.model.Animal
+import com.example.petlink.model.AnimalAgeRange
+import com.example.petlink.model.AnimalSpecies
 import com.example.petlink.network.StateManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,5 +51,39 @@ class AnimalViewModel : ViewModel() {
         AnimalState = AnimalState.copy(
             selectedAnimal = animal
         )
+    }
+
+    fun setLocationFilter(location: String) {
+        AnimalState = AnimalState.copy(
+            filters = AnimalState.filters.copy(
+                location = location
+            )
+        )
+    }
+
+    fun setSpeciesFilter(species: String) {
+        AnimalState = AnimalState.copy(
+            filters = AnimalState.filters.copy(
+                species = AnimalSpecies.fromDisplayName(species)
+            )
+        )
+    }
+
+    fun setAgeRangeFilter(ageRange: String) {
+        AnimalState = AnimalState.copy(
+            filters = AnimalState.filters.copy(
+                ageRange = AnimalAgeRange.fromDisplayName(ageRange)
+            )
+        )
+    }
+
+    fun getFilteredAnimals(): List<Animal> {
+        return AnimalState.animals.filter {
+            it.location.lowercase().contains(AnimalState.filters.location.lowercase())
+        }.filter {
+            AnimalState.filters.species.matches(it.species)
+        }.filter {
+            AnimalState.filters.ageRange.matches(it.age)
+        }
     }
 }
