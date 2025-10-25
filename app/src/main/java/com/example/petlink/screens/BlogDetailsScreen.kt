@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -39,7 +40,6 @@ fun BlogDetailsScreen(articleState: ArticleState, onGoBack : () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundGreen)
-            .padding(24.dp),
     ) {
         IconButton(onClick = onGoBack) {
             Icon(
@@ -51,34 +51,42 @@ fun BlogDetailsScreen(articleState: ArticleState, onGoBack : () -> Unit) {
         }
         article?.let { article ->
             Column(
-                modifier = Modifier.fillMaxWidth()
-                    .clip(RoundedCornerShape(32.dp))
-                    .background(White)
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
                     .verticalScroll(rememberScrollState())
-            ) {
-                AsyncImage(
-                    model = article.imageUrl,
-                    contentDescription = "Image of ${article.title}",
-                    modifier = Modifier.fillMaxWidth()
-                        .size(256.dp),
-                    contentScale = ContentScale.FillBounds
-                )
+            ){
                 Column(
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(32.dp))
+                        .background(White)
                 ) {
-                    Text(
-                        text = article.title,
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.Bold,
-                        lineHeight = 40.sp
+                    AsyncImage(
+                        model = article.imageUrl,
+                        contentDescription = "Image of ${article.title}",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .size(256.dp),
+                        contentScale = ContentScale.FillBounds
                     )
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text(
+                            text = article.title,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            lineHeight = 40.sp
+                        )
 
-                    Spacer(Modifier.height(8.dp))
+                        Spacer(Modifier.height(8.dp))
 
-                    Text(
-                        text = article.content,
-                        fontSize = 24.sp
-                    )
+                        Text(
+                            text = article.content,
+                            textAlign = TextAlign.Justify,
+                            fontSize = 16.sp
+                        )
+                    }
                 }
             }
         } ?: run {
