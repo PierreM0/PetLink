@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,12 +33,16 @@ import com.example.petlink.components.SearchBar
 import com.example.petlink.model.Animal
 import com.example.petlink.ui.theme.BackgroundGreen
 import androidx.core.net.toUri
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petlink.viewmodels.AnimalState
+import com.example.petlink.viewmodels.AnimalViewModel
 
 // TODO filtres dans le viewmodel
 
 @Composable
-fun AdoptionScreen(animalState: AnimalState) {
+fun AdoptionScreen(viewModel: AnimalViewModel = viewModel()) {
+    val animalState: AnimalState = viewModel.stateFlow.collectAsState().value
+
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
     var speciesValue by remember { mutableStateOf("Toutes espèces") }
     var ageRangeValue by remember { mutableStateOf("Tous âges")}
