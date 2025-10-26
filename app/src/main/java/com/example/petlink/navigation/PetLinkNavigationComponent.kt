@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
+import com.example.petlink.screens.AdoptionDetailsScreen
 import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogDetailsScreen
 import com.example.petlink.screens.BlogScreen
@@ -100,6 +101,13 @@ fun PetLinkNavigationComponent() {
                             animalViewModel.setSelectedAnimal(animal)
                             navController.navigate(PetLinkScreens.AdoptionDetailsScreen.route)
                         })
+                }
+
+                composable(PetLinkScreens.AdoptionDetailsScreen.route) {
+                    AdoptionDetailsScreen(
+                        animalState = animalState,
+                        onGoBack = { navController.popBackStack() }
+                    )
                 }
 
                 composable(PetLinkScreens.HealthScreen.route) {
