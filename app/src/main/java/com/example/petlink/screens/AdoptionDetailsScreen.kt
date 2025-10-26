@@ -1,5 +1,7 @@
 package com.example.petlink.screens
 
+import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -134,7 +137,19 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
 
                 Spacer(Modifier.height(32.dp))
 
-                RawButton(onClick = {}) {
+                val ctx = LocalContext.current
+
+                RawButton(onClick = {
+                    val i = Intent(Intent.ACTION_DIAL, animal.refugeNumber)
+                    try {
+                        ctx.startActivity(i)
+                    } catch(s: SecurityException) {
+                        Toast.makeText(ctx,
+                            "Une erreur est survenue.",
+                            Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }) {
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(32.dp))
