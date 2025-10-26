@@ -34,11 +34,11 @@ import com.example.petlink.model.AdoptionAnimal
 import com.example.petlink.model.AdoptionAnimalAgeRange
 import com.example.petlink.model.AdoptionAnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
-import com.example.petlink.viewmodels.AnimalViewModel
+import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 
 @Composable
-fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (AdoptionAnimal) -> Unit) {
-    val animalState = animalViewModel.stateFlow.collectAsState().value
+fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: (AdoptionAnimal) -> Unit) {
+    val animalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
 
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
     var speciesValue by remember { mutableStateOf(animalState.filters.species.displayName) }
@@ -57,7 +57,7 @@ fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (AdoptionAnimal)
             SearchBar(value = locationSearchValue,
                 onValueChange = {
                     value -> locationSearchValue = value
-                    animalViewModel.setLocationFilter(value.text)
+                    adoptionAnimalViewModel.setLocationFilter(value.text)
                                 },
                 placeholderText = "Rechercher par localisation",
                 isLocationSearch = true)
@@ -71,7 +71,7 @@ fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (AdoptionAnimal)
                 Dropdown(value = speciesValue,
                     onValueChange = {
                         value -> speciesValue = value
-                        animalViewModel.setSpeciesFilter(value)
+                        adoptionAnimalViewModel.setSpeciesFilter(value)
                                     },
                     items = AdoptionAnimalSpecies.getAllDisplayNames(),
                     modifier = Modifier.weight(1f))
@@ -80,7 +80,7 @@ fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (AdoptionAnimal)
                 Dropdown(value = ageRangeValue,
                     onValueChange = {
                         value -> ageRangeValue = value
-                        animalViewModel.setAgeRangeFilter(value)
+                        adoptionAnimalViewModel.setAgeRangeFilter(value)
                                     },
                     items = AdoptionAnimalAgeRange.getAllDisplayNames(),
                     modifier = Modifier.weight(1f))
@@ -97,7 +97,7 @@ fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (AdoptionAnimal)
             }
         }
         else {
-            val filteredAnimals = animalViewModel.getFilteredAnimals()
+            val filteredAnimals = adoptionAnimalViewModel.getFilteredAnimals()
 
             Text(text = "${filteredAnimals.size} résultats", fontSize = 24.sp, fontWeight = FontWeight.Medium)
 

@@ -30,8 +30,8 @@ import com.example.petlink.screens.BlogScreen
 import com.example.petlink.screens.HealthRecordScreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
-import com.example.petlink.viewmodels.AnimalState
-import com.example.petlink.viewmodels.AnimalViewModel
+import com.example.petlink.viewmodels.AdoptionAnimalState
+import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
@@ -41,10 +41,10 @@ import com.example.petlink.viewmodels.ArticleViewModel
 fun PetLinkNavigationComponent() {
     val navController = rememberNavController()
 
-    val animalViewModel: AnimalViewModel = viewModel()
+    val adoptionAnimalViewModel: AdoptionAnimalViewModel = viewModel()
     val articleViewModel: ArticleViewModel = viewModel()
 
-    val animalState: AnimalState = animalViewModel.stateFlow.collectAsState().value
+    val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
 
     var topBarName by remember { mutableStateOf(PetLinkScreens.HomeScreen.title) }
@@ -97,16 +97,16 @@ fun PetLinkNavigationComponent() {
 
                 composable(PetLinkScreens.AdoptionScreen.route) {
                     topBarName = PetLinkScreens.AdoptionScreen.title
-                    AdoptionScreen(animalViewModel,
+                    AdoptionScreen(adoptionAnimalViewModel,
                         onDetails = { animal ->
-                            animalViewModel.setSelectedAnimal(animal)
+                            adoptionAnimalViewModel.setSelectedAnimal(animal)
                             navController.navigate(PetLinkScreens.AdoptionDetailsScreen.route)
                         })
                 }
 
                 composable(PetLinkScreens.AdoptionDetailsScreen.route) {
                     AdoptionDetailsScreen(
-                        animalState = animalState,
+                        adoptionAnimalState = adoptionAnimalState,
                         onGoBack = { navController.popBackStack() }
                     )
                 }

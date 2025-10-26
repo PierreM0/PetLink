@@ -39,11 +39,11 @@ import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.White
-import com.example.petlink.viewmodels.AnimalState
+import com.example.petlink.viewmodels.AdoptionAnimalState
 
 @Composable
-fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
-    val animal = animalState.selectedAdoptionAnimal
+fun AdoptionDetailsScreen(adoptionAnimalState: AdoptionAnimalState, onGoBack: () -> Unit) {
+    val animal = adoptionAnimalState.selectedAdoptionAnimal
 
     // Contenu principal
     Column(

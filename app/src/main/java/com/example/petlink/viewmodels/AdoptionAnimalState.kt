@@ -3,7 +3,7 @@ package com.example.petlink.viewmodels
 import com.example.petlink.model.AdoptionAnimal
 import com.example.petlink.model.AdoptionAnimalFilters
 
-data class AnimalState (
+data class AdoptionAnimalState (
     val adoptionAnimals: List<AdoptionAnimal> = listOf(),
     val selectedAdoptionAnimal: AdoptionAnimal? = null,
     val isLoading: Boolean = false,

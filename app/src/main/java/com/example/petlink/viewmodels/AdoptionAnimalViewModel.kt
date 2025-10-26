@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AnimalViewModel : ViewModel() {
-    private val animalsMutableStateFlow = MutableStateFlow(AnimalState())
+class AdoptionAnimalViewModel : ViewModel() {
+    private val animalsMutableStateFlow = MutableStateFlow(AdoptionAnimalState())
 
-    val stateFlow: StateFlow<AnimalState>
+    val stateFlow: StateFlow<AdoptionAnimalState>
         get() = animalsMutableStateFlow.asStateFlow()
 
-    private var AnimalState: AnimalState
+    private var AdoptionAnimalState: AdoptionAnimalState
         get() = animalsMutableStateFlow.value
         set(value) {
             animalsMutableStateFlow.value = value
@@ -31,15 +31,15 @@ class AnimalViewModel : ViewModel() {
     }
 
     fun getAnimalList() {
-        AnimalState = AnimalState.copy(isLoading = true)
+        AdoptionAnimalState = AdoptionAnimalState.copy(isLoading = true)
         StateManager.launchCoroutine {
-            AnimalState = try {
-                AnimalState.copy(
+            AdoptionAnimalState = try {
+                AdoptionAnimalState.copy(
                     adoptionAnimals = PetLinkAPI.getAnimals(),
                     isLoading = false
                 )
             } catch (error: Exception) {
-                AnimalState.copy(
+                AdoptionAnimalState.copy(
                     error = error,
                     isLoading = false
                 )
@@ -48,42 +48,42 @@ class AnimalViewModel : ViewModel() {
     }
 
     fun setSelectedAnimal(adoptionAnimal: AdoptionAnimal) {
-        AnimalState = AnimalState.copy(
+        AdoptionAnimalState = AdoptionAnimalState.copy(
             selectedAdoptionAnimal = adoptionAnimal
         )
     }
 
     fun setLocationFilter(location: String) {
-        AnimalState = AnimalState.copy(
-            filters = AnimalState.filters.copy(
+        AdoptionAnimalState = AdoptionAnimalState.copy(
+            filters = AdoptionAnimalState.filters.copy(
                 location = location
             )
         )
     }
 
     fun setSpeciesFilter(species: String) {
-        AnimalState = AnimalState.copy(
-            filters = AnimalState.filters.copy(
+        AdoptionAnimalState = AdoptionAnimalState.copy(
+            filters = AdoptionAnimalState.filters.copy(
                 species = AdoptionAnimalSpecies.fromDisplayName(species)
             )
         )
     }
 
     fun setAgeRangeFilter(ageRange: String) {
-        AnimalState = AnimalState.copy(
-            filters = AnimalState.filters.copy(
+        AdoptionAnimalState = AdoptionAnimalState.copy(
+            filters = AdoptionAnimalState.filters.copy(
                 ageRange = AdoptionAnimalAgeRange.fromDisplayName(ageRange)
             )
         )
     }
 
     fun getFilteredAnimals(): List<AdoptionAnimal> {
-        return AnimalState.adoptionAnimals.filter {
-            it.location.lowercase().contains(AnimalState.filters.location.lowercase())
+        return AdoptionAnimalState.adoptionAnimals.filter {
+            it.location.lowercase().contains(AdoptionAnimalState.filters.location.lowercase())
         }.filter {
-            AnimalState.filters.species.matches(it.species)
+            AdoptionAnimalState.filters.species.matches(it.species)
         }.filter {
-            AnimalState.filters.ageRange.matches(it.age)
+            AdoptionAnimalState.filters.ageRange.matches(it.age)
         }
     }
 }
