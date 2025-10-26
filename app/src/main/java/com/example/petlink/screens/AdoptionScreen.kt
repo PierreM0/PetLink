@@ -34,7 +34,6 @@ import com.example.petlink.model.Animal
 import com.example.petlink.model.AnimalAgeRange
 import com.example.petlink.model.AnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
-import com.example.petlink.viewmodels.AnimalState
 import com.example.petlink.viewmodels.AnimalViewModel
 
 // TODO filtres dans le viewmodel
@@ -42,8 +41,6 @@ import com.example.petlink.viewmodels.AnimalViewModel
 @Composable
 fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (Animal) -> Unit) {
     val animalState = animalViewModel.stateFlow.collectAsState().value
-
-    val animals = animalState.animals
 
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
     var speciesValue by remember { mutableStateOf(animalState.filters.species.displayName) }

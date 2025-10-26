@@ -1,6 +1,5 @@
 package com.example.petlink.mapper
 
-import android.net.Uri
 import androidx.core.net.toUri
 import com.example.petlink.model.Animal
 import com.example.petlink.model.AnimalDTO

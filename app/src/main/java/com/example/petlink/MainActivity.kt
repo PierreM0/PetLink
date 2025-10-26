@@ -7,8 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.petlink.navigation.PetLinkNavigationComponent
 import com.example.petlink.ui.theme.PetLinkTheme
-import com.example.petlink.viewmodels.AnimalViewModel
-import com.example.petlink.viewmodels.ArticleViewModel
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("ViewModelConstructorInComposable")
