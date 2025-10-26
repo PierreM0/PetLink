@@ -45,12 +45,14 @@ import com.example.petlink.viewmodels.AnimalState
 fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
     val animal = animalState.selectedAnimal
 
+    // Contenu principal
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundGreen)
             .padding(16.dp)
     ) {
+        // Bouton retour
         IconButton(onClick = onGoBack) {
             Icon(
                 painter = painterResource(R.drawable.ic_return),
@@ -59,11 +61,14 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
                 tint = MainGreen
             )
         }
+
+        // Détails de l'animal
         animal?.let { animal ->
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                // Image
                 AsyncImage(
                     model = animal.imageUrl,
                     contentDescription = "Image de ${animal.name}",
@@ -73,12 +78,14 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
 
                 Spacer(Modifier.height(8.dp))
 
+                // Nom
                 Text(
                     text = animal.name,
                     fontSize = 28.sp,
                     fontWeight = FontWeight.SemiBold
                 )
 
+                // Espèce
                 Text(
                     text = animal.species,
                     fontSize = 20.sp,
@@ -87,6 +94,7 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
 
                 Spacer(Modifier.height(8.dp))
 
+                // Description
                 Text(
                     text = animal.description,
                     modifier = Modifier.fillMaxWidth().padding(start = 16.dp),
@@ -98,6 +106,7 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
+                    // Âge et icone
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -110,6 +119,7 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
                         Text(text = "${animal.age} ans", fontSize = 20.sp, fontWeight = FontWeight.Medium)
                     }
 
+                    // Localisation et icone
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -122,6 +132,7 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
                         Text(text = animal.location, fontSize = 20.sp, fontWeight = FontWeight.Medium)
                     }
 
+                    // Refuge et icone
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -137,8 +148,8 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
 
                 Spacer(Modifier.height(32.dp))
 
+                // Bouton appeler le refuge (redirige vers le numeroteur)
                 val ctx = LocalContext.current
-
                 RawButton(onClick = {
                     val i = Intent(Intent.ACTION_DIAL, animal.refugeNumber)
                     try {
