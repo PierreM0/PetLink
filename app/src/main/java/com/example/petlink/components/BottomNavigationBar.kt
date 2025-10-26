@@ -41,7 +41,7 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
                 )
             }
 
-            IconButton(onClick = { onIconClick(PetLinkScreens.HealthScreen.route) }) {
+            IconButton(onClick = { onIconClick(PetLinkScreens.HealthRecordScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_carnet_sante),
                     contentDescription = "Carnet de santé",
