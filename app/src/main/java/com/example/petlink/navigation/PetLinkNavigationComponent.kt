@@ -110,8 +110,8 @@ fun PetLinkNavigationComponent() {
                     )
                 }
 
-                composable(PetLinkScreens.HealthScreen.route) {
-                    topBarName = PetLinkScreens.HealthScreen.title
+                composable(PetLinkScreens.HealthRecordScreen.route) {
+                    topBarName = PetLinkScreens.HealthRecordScreen.title
                 }
 
                 composable(PetLinkScreens.BlogScreen.route) {
