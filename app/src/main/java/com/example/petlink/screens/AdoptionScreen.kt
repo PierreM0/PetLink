@@ -36,8 +36,6 @@ import com.example.petlink.model.AnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.viewmodels.AnimalViewModel
 
-// TODO filtres dans le viewmodel
-
 @Composable
 fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (Animal) -> Unit) {
     val animalState = animalViewModel.stateFlow.collectAsState().value
