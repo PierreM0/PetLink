@@ -1,13 +1,13 @@
 package com.example.petlink.model
 
-enum class AnimalSpecies(val displayName: String) {
+enum class AdoptionAnimalSpecies(val displayName: String) {
     All("Toutes espèces"),
     Cat("Chat"),
     Dog("Chien"),
     Bunny("Lapin");
 
     companion object {
-        fun fromDisplayName(name: String): AnimalSpecies {
+        fun fromDisplayName(name: String): AdoptionAnimalSpecies {
             return entries.find { it.displayName == name } ?: All
         }
 

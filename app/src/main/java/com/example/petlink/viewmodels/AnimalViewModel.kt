@@ -3,9 +3,9 @@ package com.example.petlink.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petlink.api.PetLinkAPI
-import com.example.petlink.model.Animal
-import com.example.petlink.model.AnimalAgeRange
-import com.example.petlink.model.AnimalSpecies
+import com.example.petlink.model.AdoptionAnimal
+import com.example.petlink.model.AdoptionAnimalAgeRange
+import com.example.petlink.model.AdoptionAnimalSpecies
 import com.example.petlink.network.StateManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,7 +35,7 @@ class AnimalViewModel : ViewModel() {
         StateManager.launchCoroutine {
             AnimalState = try {
                 AnimalState.copy(
-                    animals = PetLinkAPI.getAnimals(),
+                    adoptionAnimals = PetLinkAPI.getAnimals(),
                     isLoading = false
                 )
             } catch (error: Exception) {
@@ -47,9 +47,9 @@ class AnimalViewModel : ViewModel() {
         }
     }
 
-    fun setSelectedAnimal(animal: Animal) {
+    fun setSelectedAnimal(adoptionAnimal: AdoptionAnimal) {
         AnimalState = AnimalState.copy(
-            selectedAnimal = animal
+            selectedAdoptionAnimal = adoptionAnimal
         )
     }
 
@@ -64,7 +64,7 @@ class AnimalViewModel : ViewModel() {
     fun setSpeciesFilter(species: String) {
         AnimalState = AnimalState.copy(
             filters = AnimalState.filters.copy(
-                species = AnimalSpecies.fromDisplayName(species)
+                species = AdoptionAnimalSpecies.fromDisplayName(species)
             )
         )
     }
@@ -72,13 +72,13 @@ class AnimalViewModel : ViewModel() {
     fun setAgeRangeFilter(ageRange: String) {
         AnimalState = AnimalState.copy(
             filters = AnimalState.filters.copy(
-                ageRange = AnimalAgeRange.fromDisplayName(ageRange)
+                ageRange = AdoptionAnimalAgeRange.fromDisplayName(ageRange)
             )
         )
     }
 
-    fun getFilteredAnimals(): List<Animal> {
-        return AnimalState.animals.filter {
+    fun getFilteredAnimals(): List<AdoptionAnimal> {
+        return AnimalState.adoptionAnimals.filter {
             it.location.lowercase().contains(AnimalState.filters.location.lowercase())
         }.filter {
             AnimalState.filters.species.matches(it.species)

@@ -1,20 +1,20 @@
 package com.example.petlink.mapper
 
 import androidx.core.net.toUri
-import com.example.petlink.model.Animal
-import com.example.petlink.model.AnimalDTO
+import com.example.petlink.model.AdoptionAnimal
+import com.example.petlink.model.AdoptionAnimalDTO
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
 
 class AnimalMapper {
-    fun mapAnimalDtoToAnimal(animalDto: AnimalDTO): Animal {
-        with(animalDto) {
+    fun mapAnimalDtoToAnimal(adoptionAnimalDto: AdoptionAnimalDTO): AdoptionAnimal {
+        with(adoptionAnimalDto) {
             val birthDate = LocalDate.parse(birthdate, DateTimeFormatter.ISO_DATE)
             val today = LocalDate.now()
             val age = Period.between(birthDate, today).years
 
-            return Animal(
+            return AdoptionAnimal(
                 id = id,
                 imageUrl = imageUrl,
                 description = description,

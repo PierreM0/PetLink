@@ -30,14 +30,14 @@ import com.example.petlink.components.AnimalCard
 import com.example.petlink.components.Dropdown
 import com.example.petlink.components.RawButton
 import com.example.petlink.components.SearchBar
-import com.example.petlink.model.Animal
-import com.example.petlink.model.AnimalAgeRange
-import com.example.petlink.model.AnimalSpecies
+import com.example.petlink.model.AdoptionAnimal
+import com.example.petlink.model.AdoptionAnimalAgeRange
+import com.example.petlink.model.AdoptionAnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.viewmodels.AnimalViewModel
 
 @Composable
-fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (Animal) -> Unit) {
+fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (AdoptionAnimal) -> Unit) {
     val animalState = animalViewModel.stateFlow.collectAsState().value
 
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
@@ -73,7 +73,7 @@ fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (Animal) -> Unit
                         value -> speciesValue = value
                         animalViewModel.setSpeciesFilter(value)
                                     },
-                    items = AnimalSpecies.getAllDisplayNames(),
+                    items = AdoptionAnimalSpecies.getAllDisplayNames(),
                     modifier = Modifier.weight(1f))
 
                 // Filtre âges
@@ -82,7 +82,7 @@ fun AdoptionScreen(animalViewModel: AnimalViewModel, onDetails: (Animal) -> Unit
                         value -> ageRangeValue = value
                         animalViewModel.setAgeRangeFilter(value)
                                     },
-                    items = AnimalAgeRange.getAllDisplayNames(),
+                    items = AdoptionAnimalAgeRange.getAllDisplayNames(),
                     modifier = Modifier.weight(1f))
             }
         }

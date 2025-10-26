@@ -1,12 +1,12 @@
 package com.example.petlink.viewmodels
 
-import com.example.petlink.model.Animal
-import com.example.petlink.model.AnimalFilters
+import com.example.petlink.model.AdoptionAnimal
+import com.example.petlink.model.AdoptionAnimalFilters
 
 data class AnimalState (
-    val animals: List<Animal> = listOf(),
-    val selectedAnimal: Animal? = null,
+    val adoptionAnimals: List<AdoptionAnimal> = listOf(),
+    val selectedAdoptionAnimal: AdoptionAnimal? = null,
     val isLoading: Boolean = false,
     val error: Exception? = null,
-    val filters: AnimalFilters = AnimalFilters()
+    val filters: AdoptionAnimalFilters = AdoptionAnimalFilters()
 )

@@ -43,7 +43,7 @@ import com.example.petlink.viewmodels.AnimalState
 
 @Composable
 fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
-    val animal = animalState.selectedAnimal
+    val animal = animalState.selectedAdoptionAnimal
 
     // Contenu principal
     Column(
@@ -154,7 +154,7 @@ fun AdoptionDetailsScreen(animalState: AnimalState, onGoBack: () -> Unit) {
                     val i = Intent(Intent.ACTION_DIAL, animal.refugeNumber)
                     try {
                         ctx.startActivity(i)
-                    } catch(s: SecurityException) {
+                    } catch(_: SecurityException) {
                         Toast.makeText(ctx,
                             "Une erreur est survenue.",
                             Toast.LENGTH_LONG)

@@ -3,7 +3,7 @@ package com.example.petlink.model
 import android.net.Uri
 import java.time.LocalDate
 
-data class Animal (
+data class AdoptionAnimal (
     val id: Int,
     val imageUrl: String,
     val description: String,

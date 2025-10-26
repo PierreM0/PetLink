@@ -3,7 +3,7 @@ package com.example.petlink.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AnimalDTO (
+data class AdoptionAnimalDTO (
     val id: Int,
     val imageUrl: String,
     val description: String,

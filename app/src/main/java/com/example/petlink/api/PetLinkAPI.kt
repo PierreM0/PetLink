@@ -2,15 +2,15 @@ package com.example.petlink.api
 
 import com.example.petlink.mapper.AnimalMapper
 import com.example.petlink.mapper.ArticleMapper
-import com.example.petlink.model.Animal
-import com.example.petlink.model.AnimalDTO
+import com.example.petlink.model.AdoptionAnimal
+import com.example.petlink.model.AdoptionAnimalDTO
 import com.example.petlink.model.Article
 import com.example.petlink.model.ArticleDTO
 import com.example.petlink.network.KtorClient
 import io.ktor.http.HttpMethod
 
 object PetLinkAPI {
-    private lateinit var animals: List<Animal>
+    private lateinit var adoptionAnimals: List<AdoptionAnimal>
     private const val ANIMAL_ENDPOINT = "animals"
     private val animalMapper = AnimalMapper()
 
@@ -18,13 +18,13 @@ object PetLinkAPI {
     private const val ARTICLE_ENDPOINT = "articles"
     private val articleMapper = ArticleMapper()
 
-    suspend fun getAnimals(): List<Animal> {
-        if (!this::animals.isInitialized) {
-            val animalsData: List<AnimalDTO> = KtorClient.httpCall(HttpMethod.Get, ANIMAL_ENDPOINT)
-            animals = animalsData.map { animalMapper.mapAnimalDtoToAnimal(it) }
+    suspend fun getAnimals(): List<AdoptionAnimal> {
+        if (!this::adoptionAnimals.isInitialized) {
+            val animalsData: List<AdoptionAnimalDTO> = KtorClient.httpCall(HttpMethod.Get, ANIMAL_ENDPOINT)
+            adoptionAnimals = animalsData.map { animalMapper.mapAnimalDtoToAnimal(it) }
         }
 
-        return animals
+        return adoptionAnimals
     }
 
     suspend fun getArticles(): List<Article> {

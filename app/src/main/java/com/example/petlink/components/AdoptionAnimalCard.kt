@@ -25,12 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.petlink.model.Animal
+import com.example.petlink.model.AdoptionAnimal
 import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.White
 
 @Composable
-fun AnimalCard(animal: Animal) {
+fun AnimalCard(adoptionAnimal: AdoptionAnimal) {
     ElevatedCard (
         modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
         shape = RoundedCornerShape(32.dp),
@@ -43,8 +43,8 @@ fun AnimalCard(animal: Animal) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             AsyncImage(
-                model = animal.imageUrl,
-                contentDescription = "Photo de ${animal.name}",
+                model = adoptionAnimal.imageUrl,
+                contentDescription = "Photo de ${adoptionAnimal.name}",
                 modifier = Modifier.size(128.dp)
                     .clip(RoundedCornerShape(32.dp))
             )
@@ -53,12 +53,12 @@ fun AnimalCard(animal: Animal) {
                 modifier = Modifier.height(128.dp)
             ) {
                 // Nom de l'animal
-                Text(text = animal.name, fontSize = 24.sp, fontWeight = FontWeight.Medium)
+                Text(text = adoptionAnimal.name, fontSize = 24.sp, fontWeight = FontWeight.Medium)
 
                 Spacer(Modifier.height(4.dp))
 
                 // Son espèce
-                Text(text = animal.species, fontSize = 16.sp, color = SecondaryText)
+                Text(text = adoptionAnimal.species, fontSize = 16.sp, color = SecondaryText)
 
                 Spacer(Modifier.height(8.dp))
 
@@ -68,7 +68,7 @@ fun AnimalCard(animal: Animal) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(imageVector = Icons.Outlined.DateRange, contentDescription = Icons.Outlined.DateRange.toString())
-                    Text(text = "${animal.age} ans", fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                    Text(text = "${adoptionAnimal.age} ans", fontSize = 16.sp, fontWeight = FontWeight.Medium)
                 }
 
                 Spacer(Modifier.height(8.dp))
@@ -79,7 +79,7 @@ fun AnimalCard(animal: Animal) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(imageVector = Icons.Outlined.Place, contentDescription = Icons.Outlined.Place.toString())
-                    Text(text = animal.location, fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                    Text(text = adoptionAnimal.location, fontSize = 16.sp, fontWeight = FontWeight.Medium)
                 }
             }
         }
