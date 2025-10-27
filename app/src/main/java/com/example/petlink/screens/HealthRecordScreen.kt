@@ -79,12 +79,22 @@ fun HealthRecordScreen(viewModel: HealthRecordViewModel = viewModel()) {
 
         Spacer(Modifier.height(32.dp))
 
+        val tabs = listOf("Visites", "Rappels", "Vaccins")
         AnimalEventTab(
-            tabs = listOf("Visites", "Rappels", "Vaccins"),
+            tabs = tabs,
             selectedIndex = selectedTabIndex,
             onTabSelected = {
                 selectedTabIndex = it
             }
         )
+
+        Spacer(Modifier.height(16.dp))
+
+        Text(
+            text = "${tabs[selectedTabIndex]} de ${state.selectedAnimal?.name}",
+            fontSize = 20.sp
+        )
+
+        Spacer(Modifier.height(8.dp))
     }
 }
