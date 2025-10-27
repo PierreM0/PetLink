@@ -32,7 +32,7 @@ import com.example.petlink.ui.theme.White
 @Composable
 fun AnimalCard(adoptionAnimal: AdoptionAnimal) {
     ElevatedCard (
-        modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+        modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(32.dp),
         colors = CardDefaults.cardColors(
             containerColor = White

@@ -103,7 +103,9 @@ fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: 
 
             Spacer(Modifier.height(16.dp))
 
-            LazyColumn {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 items(filteredAnimals) { animal ->
                     RawButton(onClick = { onDetails(animal) }) {
                         AnimalCard(animal)
