@@ -39,11 +39,12 @@ fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) 
         modifier = Modifier
             .background(BackgroundGreen)
             .fillMaxSize()
-            .padding(24.dp)
+            .padding(24.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         Text(
             text = "Événements à venir",
-            fontSize = 24.sp
+            fontSize = 20.sp
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(24.dp)
@@ -73,7 +74,7 @@ fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) 
         ) {
             Text(
                 text = "Annonces récentes",
-                fontSize = 24.sp
+                fontSize = 20.sp
             )
             RawButton(onClick = {}) {
                 Text(
@@ -110,7 +111,7 @@ fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) 
         ) {
             Text(
                 text = "Article le plus récent",
-                fontSize = 24.sp
+                fontSize = 20.sp
             )
             RawButton(onClick = {}) {
                 Text(
