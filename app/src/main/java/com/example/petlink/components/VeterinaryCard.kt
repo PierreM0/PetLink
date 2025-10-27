@@ -1,5 +1,7 @@
 package com.example.petlink.components
 
+import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -104,6 +107,7 @@ fun VeterinaryCard(veterinary: Veterinary) {
                 modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                val ctx = LocalContext.current
                 Button(
                     modifier = Modifier.width(160.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -111,7 +115,17 @@ fun VeterinaryCard(veterinary: Veterinary) {
                         contentColor = MainGreen
                     ),
                     border = BorderStroke(2.dp, MainGreen),
-                    onClick = {}
+                    onClick = {
+                        val i = Intent(Intent.ACTION_DIAL, veterinary.phoneNumber)
+                        try {
+                            ctx.startActivity(i)
+                        } catch(_: SecurityException) {
+                            Toast.makeText(ctx,
+                                "Une erreur est survenue.",
+                                Toast.LENGTH_LONG)
+                                .show()
+                        }
+                    }
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
