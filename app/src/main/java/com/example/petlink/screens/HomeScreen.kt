@@ -24,7 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.components.AnimalCard
+import com.example.petlink.components.AdoptionAnimalCard
 import com.example.petlink.components.ArticleCard
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.AdoptionAnimal
@@ -111,7 +111,7 @@ fun HomeScreen(
             ) {
                 items(newestAnimals) { animal ->
                     RawButton(onClick = { onAnimalDetails(animal) }) {
-                        AnimalCard(animal)
+                        AdoptionAnimalCard(animal)
                     }
                 }
             }

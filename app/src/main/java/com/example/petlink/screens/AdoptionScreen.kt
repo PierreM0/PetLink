@@ -26,7 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.components.AnimalCard
+import com.example.petlink.components.AdoptionAnimalCard
 import com.example.petlink.components.Dropdown
 import com.example.petlink.components.RawButton
 import com.example.petlink.components.SearchBar
@@ -108,7 +108,7 @@ fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: 
             ) {
                 items(filteredAnimals) { animal ->
                     RawButton(onClick = { onDetails(animal) }) {
-                        AnimalCard(animal)
+                        AdoptionAnimalCard(animal)
                     }
                 }
             }
