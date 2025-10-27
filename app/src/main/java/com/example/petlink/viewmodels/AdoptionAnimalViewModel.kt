@@ -86,4 +86,13 @@ class AdoptionAnimalViewModel : ViewModel() {
             AdoptionAnimalState.filters.ageRange.matches(it.age)
         }
     }
+
+    /**
+     * Retourne les n animaux les plus récemment ajoutés
+     */
+    fun getNewestAnimals(number: Int): List<AdoptionAnimal> {
+        return AdoptionAnimalState.adoptionAnimals
+            .sortedByDescending { it.publicationDate }
+            .take(number)
+    }
 }

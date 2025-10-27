@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -23,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.petlink.components.AnimalCard
 import com.example.petlink.components.ArticleCard
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.Article
@@ -30,14 +32,19 @@ import com.example.petlink.navigation.PetLinkScreens
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
+import com.example.petlink.viewmodels.AdoptionAnimalState
+import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
 @Composable
 fun HomeScreen(articleViewModel: ArticleViewModel,
+               adoptionAnimalViewModel: AdoptionAnimalViewModel,
                onArticleDetails : (Article) -> Unit,
                onShowEverything: (String) -> Unit) {
+
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
+    val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
 
     Column(
         modifier = Modifier
@@ -86,23 +93,19 @@ fun HomeScreen(articleViewModel: ArticleViewModel,
                 modifier = Modifier.clickable(onClick = { onShowEverything(PetLinkScreens.AdoptionScreen.route) })
             )
         }
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
-            items(3) {
-                ElevatedCard(
-                    modifier = Modifier
-                        .height(120.dp)
-                        .width(200.dp),
-                    colors = CardDefaults.cardColors(White),
-                    shape = RoundedCornerShape(32.dp)
-                ) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("Exemple")
-                    }
+        if (adoptionAnimalState.isLoading) {
+            Box(modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
+        } else {
+            val newestAnimals = adoptionAnimalViewModel.getNewestAnimals(3)
+            LazyRow(
+                modifier = Modifier.height(144.dp),
+                horizontalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                items(newestAnimals) { animal ->
+                    AnimalCard(animal)
                 }
             }
         }
