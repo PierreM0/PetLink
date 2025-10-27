@@ -16,7 +16,7 @@ class ArticleViewModel: ViewModel() {
     val stateFlow: StateFlow<ArticleState>
         get() = articlesMutableStateFlow.asStateFlow()
 
-    private var ArticleState: ArticleState
+    private var articleState: ArticleState
         get() = articlesMutableStateFlow.value
         set(value) {
             articlesMutableStateFlow.value = value
@@ -29,15 +29,15 @@ class ArticleViewModel: ViewModel() {
     }
 
     fun getArticleList() {
-        ArticleState = ArticleState.copy(isLoading = true)
+        articleState = articleState.copy(isLoading = true)
         StateManager.launchCoroutine {
-            ArticleState = try {
-                ArticleState.copy(
+            articleState = try {
+                articleState.copy(
                     articles = PetLinkAPI.getArticles(),
                     isLoading = false
                 )
             } catch (error: Exception) {
-                ArticleState.copy(
+                articleState.copy(
                     error = error,
                     isLoading = false
                 )
@@ -46,8 +46,12 @@ class ArticleViewModel: ViewModel() {
     }
 
     fun setSelectedArticle(article: Article) {
-        ArticleState = ArticleState.copy(
+        articleState = articleState.copy(
             selectedArticle = article
         )
+    }
+
+    fun getNewestArticle(): Article? {
+        return articleState.articles.maxBy { it.date }
     }
 }

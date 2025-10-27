@@ -28,6 +28,7 @@ import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogDetailsScreen
 import com.example.petlink.screens.BlogScreen
 import com.example.petlink.screens.HealthRecordScreen
+import com.example.petlink.screens.HomeScreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
 import com.example.petlink.viewmodels.AdoptionAnimalState
@@ -93,6 +94,7 @@ fun PetLinkNavigationComponent() {
             NavHost(navController = navController, startDestination = PetLinkScreens.HomeScreen.route) {
                 composable(PetLinkScreens.HomeScreen.route) {
                     topBarName = PetLinkScreens.HomeScreen.title
+                    HomeScreen(articleViewModel)
                 }
 
                 composable(PetLinkScreens.AdoptionScreen.route) {
