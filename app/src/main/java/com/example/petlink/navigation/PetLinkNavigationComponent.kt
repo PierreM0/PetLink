@@ -98,7 +98,11 @@ fun PetLinkNavigationComponent() {
                         onArticleDetails = { article ->
                             articleViewModel.setSelectedArticle(article)
                             navController.navigate(PetLinkScreens.BlogDetailsScreen.route)
-                        })
+                        },
+                        onShowEverything = { route ->
+                            navController.navigate(route)
+                        }
+                    )
                 }
 
                 composable(PetLinkScreens.AdoptionScreen.route) {

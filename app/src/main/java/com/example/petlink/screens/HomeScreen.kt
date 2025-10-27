@@ -1,6 +1,7 @@
 package com.example.petlink.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.example.petlink.components.ArticleCard
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.Article
+import com.example.petlink.navigation.PetLinkScreens
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
@@ -32,7 +34,9 @@ import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
 @Composable
-fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) -> Unit) {
+fun HomeScreen(articleViewModel: ArticleViewModel,
+               onArticleDetails : (Article) -> Unit,
+               onShowEverything: (String) -> Unit) {
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
 
     Column(
@@ -76,12 +80,11 @@ fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) 
                 text = "Annonces récentes",
                 fontSize = 20.sp
             )
-            RawButton(onClick = {}) {
-                Text(
-                    text = "Voir tout >",
-                    color = MainGreen
-                )
-            }
+            Text(
+                text = "Voir tout >",
+                color = MainGreen,
+                modifier = Modifier.clickable(onClick = { onShowEverything(PetLinkScreens.AdoptionScreen.route) })
+            )
         }
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(24.dp)
@@ -113,12 +116,11 @@ fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) 
                 text = "Article le plus récent",
                 fontSize = 20.sp
             )
-            RawButton(onClick = {}) {
-                Text(
-                    text = "Voir tout >",
-                    color = MainGreen
-                )
-            }
+            Text(
+                text = "Voir tout >",
+                color = MainGreen,
+                modifier = Modifier.clickable(onClick = { onShowEverything(PetLinkScreens.BlogScreen.route) })
+            )
         }
         if (articleState.isLoading) {
             Box(modifier = Modifier.fillMaxSize(),
