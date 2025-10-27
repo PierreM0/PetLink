@@ -100,6 +100,10 @@ fun PetLinkNavigationComponent() {
                             articleViewModel.setSelectedArticle(article)
                             navController.navigate(PetLinkScreens.BlogDetailsScreen.route)
                         },
+                        onAnimalDetails = { animal ->
+                            adoptionAnimalViewModel.setSelectedAnimal(animal)
+                            navController.navigate(PetLinkScreens.AdoptionDetailsScreen.route)
+                        },
                         onShowEverything = { route ->
                             navController.navigate(route)
                         }

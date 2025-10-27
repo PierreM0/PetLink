@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.example.petlink.components.AnimalCard
 import com.example.petlink.components.ArticleCard
 import com.example.petlink.components.RawButton
+import com.example.petlink.model.AdoptionAnimal
 import com.example.petlink.model.Article
 import com.example.petlink.navigation.PetLinkScreens
 import com.example.petlink.ui.theme.BackgroundGreen
@@ -38,10 +39,13 @@ import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
 @Composable
-fun HomeScreen(articleViewModel: ArticleViewModel,
-               adoptionAnimalViewModel: AdoptionAnimalViewModel,
-               onArticleDetails : (Article) -> Unit,
-               onShowEverything: (String) -> Unit) {
+fun HomeScreen(
+    articleViewModel: ArticleViewModel,
+    adoptionAnimalViewModel: AdoptionAnimalViewModel,
+    onArticleDetails: (Article) -> Unit,
+    onShowEverything: (String) -> Unit,
+    onAnimalDetails: (AdoptionAnimal) -> Unit
+) {
 
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
     val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
@@ -105,7 +109,9 @@ fun HomeScreen(articleViewModel: ArticleViewModel,
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 items(newestAnimals) { animal ->
-                    AnimalCard(animal)
+                    RawButton(onClick = { onAnimalDetails(animal) }) {
+                        AnimalCard(animal)
+                    }
                 }
             }
         }
