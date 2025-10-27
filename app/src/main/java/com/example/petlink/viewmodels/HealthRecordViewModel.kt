@@ -3,6 +3,7 @@ package com.example.petlink.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petlink.model.Animal
+import com.example.petlink.model.AnimalEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,8 +38,20 @@ class HealthRecordViewModel : ViewModel() {
 
     fun addAnimal(animal: Animal) {
         HealthRecordState = HealthRecordState.copy(
-            animals = (HealthRecordState.animals + animal) as MutableList<Animal>
+            animals = HealthRecordState.animals + animal
         )
+    }
+
+    fun addEventToSelectedAnimal(animalEvent: AnimalEvent) {
+        HealthRecordState.selectedAnimal?.let { animal ->
+            val updatedAnimal = animal.copy(events = animal.events + animalEvent)
+            HealthRecordState = HealthRecordState.copy(
+                animals = HealthRecordState.animals.map {
+                    if (it.id == animal.id) updatedAnimal else it
+                },
+                selectedAnimal = updatedAnimal
+            )
+        }
     }
 
     fun setSelectedAnimal(animal: Animal) {
