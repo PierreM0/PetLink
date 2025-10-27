@@ -13,24 +13,29 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petlink.components.AnimalCard
+import com.example.petlink.components.AnimalEventTab
 import com.example.petlink.components.RawButton
-import com.example.petlink.model.Animal
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.SubGreen
 import com.example.petlink.ui.theme.White
 import com.example.petlink.viewmodels.HealthRecordState
 import com.example.petlink.viewmodels.HealthRecordViewModel
-import java.time.LocalDate
 
 @Composable
 fun HealthRecordScreen(viewModel: HealthRecordViewModel = viewModel()) {
     val state: HealthRecordState = viewModel.stateFlow.collectAsState().value
+
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
 
     Column(
         modifier = Modifier
@@ -71,5 +76,15 @@ fun HealthRecordScreen(viewModel: HealthRecordViewModel = viewModel()) {
                 }
             }
         }
+
+        Spacer(Modifier.height(32.dp))
+
+        AnimalEventTab(
+            tabs = listOf("Visites", "Rappels", "Vaccins"),
+            selectedIndex = selectedTabIndex,
+            onTabSelected = {
+                selectedTabIndex = it
+            }
+        )
     }
 }
