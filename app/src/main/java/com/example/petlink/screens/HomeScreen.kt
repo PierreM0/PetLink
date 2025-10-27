@@ -22,7 +22,7 @@ import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 
 @Composable
-fun HomeScreen(articleViewModel: ArticleViewModel) {
+fun HomeScreen(articleViewModel: ArticleViewModel, onArticleDetails : (Article) -> Unit) {
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
 
     Column(
@@ -31,12 +31,7 @@ fun HomeScreen(articleViewModel: ArticleViewModel) {
             .fillMaxSize()
             .padding(24.dp)
     ) {
-        Row {
-            Text("Événements à venir")
-            RawButton(onClick = {}) {
-                Text("Voir tout >")
-            }
-        }
+        Text("Événements à venir")
         LazyRow {  }
 
         Row {
@@ -47,6 +42,12 @@ fun HomeScreen(articleViewModel: ArticleViewModel) {
         }
         LazyRow {  }
 
+        Row {
+            Text("Article le plus récent")
+            RawButton(onClick = {}) {
+                Text("Voir tout >")
+            }
+        }
         if (articleState.isLoading) {
             Box(modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center) {
@@ -54,9 +55,9 @@ fun HomeScreen(articleViewModel: ArticleViewModel) {
             }
         } else {
             val latestArticle : Article? = articleViewModel.getNewestArticle()
-            RawButton(onClick = {}) {
-                latestArticle?.let { article ->
-                    ArticleCard(latestArticle)
+            latestArticle?.let { article ->
+                RawButton(onClick = { onArticleDetails(article) }) {
+                        ArticleCard(article)
                 }
             }
         }
