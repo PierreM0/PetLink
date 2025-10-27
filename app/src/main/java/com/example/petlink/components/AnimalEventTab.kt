@@ -14,21 +14,31 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
+import com.example.petlink.model.AnimalEventType
 import com.example.petlink.ui.theme.Black
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.SubGreen
 
+enum class AnimalEventTabItem(val displayName: String, val type: AnimalEventType) {
+    Visit("Visites", AnimalEventType.Visit),
+    Booster("Rappels", AnimalEventType.Booster),
+    Vaccine("Vaccins", AnimalEventType.Vaccine)
+}
+
 @Composable
 fun AnimalEventTab(
-    tabs: List<String>,
     selectedIndex: Int,
-    onTabSelected: (Int) -> Unit
+    onTabSelected: (AnimalEventTabItem) -> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -37,12 +47,12 @@ fun AnimalEventTab(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            tabs.forEachIndexed { index, title ->
+            AnimalEventTabItem.entries.forEachIndexed { index, tabItem ->
                 RawButton(onClick = {
-                    onTabSelected(index)
+                    onTabSelected(tabItem)
                 }) {
                     Text(
-                        text = title,
+                        text = tabItem.displayName,
                         color = if (selectedIndex == index) MainGreen else Black,
                         fontSize = 20.sp
                     )
@@ -63,7 +73,7 @@ fun AnimalEventTab(
                     .background(SubGreen)
             )
 
-            val tabWidthPx = maxWidth / tabs.size
+            val tabWidthPx = maxWidth / AnimalEventTabItem.entries.size
             val offset = selectedIndex * tabWidthPx
 
             Box(

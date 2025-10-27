@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,7 +42,7 @@ fun AnimalEventCard(animalEvent: AnimalEvent) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
-            .height(104.dp),
+            .height(108.dp),
         colors = CardDefaults.cardColors(
             containerColor = White
         )
@@ -73,11 +74,22 @@ fun AnimalEventCard(animalEvent: AnimalEvent) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
-                    Text(
-                        text = animalEvent.title,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = animalEvent.title,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+
+                        Text(
+                            text = animalEvent.date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRENCH)),
+                            fontSize = 16.sp,
+                            color = SecondaryText
+                        )
+                    }
 
                     Text(
                         text = animalEvent.localisation,
@@ -89,15 +101,11 @@ fun AnimalEventCard(animalEvent: AnimalEvent) {
 
                     Text(
                         text = animalEvent.description,
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
-
-                Text(
-                    text = animalEvent.date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRENCH)),
-                    fontSize = 16.sp,
-                    color = SecondaryText
-                )
             }
         }
     }
@@ -111,6 +119,6 @@ fun AnimalEventCardPreview() {
         title = "Consultation",
         localisation = "Metz",
         date = LocalDate.now(),
-        description = "Tests de santé")
+        description = "Vaccin contre la rage à effectuer immédiatement")
     AnimalEventCard(animalEvent)
 }
