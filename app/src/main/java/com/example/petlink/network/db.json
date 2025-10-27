@@ -157,5 +157,117 @@
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSez99_OM5-Fk4wVklDsxXhNRGxXFMZdvxQsA&s",
       "creationDate": "2025-02-25"
     }
+  ],
+  "veterinaries": [
+    {
+      "id": 1,
+      "name": "Clinique du Chien Heureux",
+      "openingHour": 8,
+      "closingHour": 18,
+      "phoneNumber": "555-4821",
+      "city": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "imageUrl": "https://images.unsplash.com/photo-1550831107-1553da8c8464?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "Cabinet Vétérinaire des Lumières",
+      "openingHour": 9,
+      "closingHour": 19,
+      "phoneNumber": "555-1375",
+      "city": "Lyon",
+      "latitude": 45.7640,
+      "longitude": 4.8357,
+      "imageUrl": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 3,
+      "name": "Clinique Animalière Saint-Ferréol",
+      "openingHour": 8,
+      "closingHour": 17,
+      "phoneNumber": "555-9264",
+      "city": "Marseille",
+      "latitude": 43.2965,
+      "longitude": 5.3698,
+      "imageUrl": "https://images.unsplash.com/photo-1598136490944-b1d4d99f3dcd?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 4,
+      "name": "Centre Vétérinaire des Pyrénées",
+      "openingHour": 9,
+      "closingHour": 18,
+      "phoneNumber": "555-3049",
+      "city": "Toulouse",
+      "latitude": 43.6047,
+      "longitude": 1.4442,
+      "imageUrl": "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 5,
+      "name": "Cabinet des Bords de Loire",
+      "openingHour": 8,
+      "closingHour": 18,
+      "phoneNumber": "555-7712",
+      "city": "Nantes",
+      "latitude": 47.2184,
+      "longitude": -1.5536,
+      "imageUrl": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 6,
+      "name": "Clinique du Port de la Lune",
+      "openingHour": 8,
+      "closingHour": 18,
+      "phoneNumber": "555-6830",
+      "city": "Bordeaux",
+      "latitude": 44.8378,
+      "longitude": -0.5792,
+      "imageUrl": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 7,
+      "name": "Cabinet Canin du Vieux-Lille",
+      "openingHour": 9,
+      "closingHour": 19,
+      "phoneNumber": "555-2419",
+      "city": "Lille",
+      "latitude": 50.6292,
+      "longitude": 3.0573,
+      "imageUrl": "https://images.unsplash.com/photo-1598136490944-b1d4d99f3dcd?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 8,
+      "name": "Clinique Animalière Azuréenne",
+      "openingHour": 8,
+      "closingHour": 18,
+      "phoneNumber": "555-9332",
+      "city": "Nice",
+      "latitude": 43.7102,
+      "longitude": 7.2620,
+      "imageUrl": "https://images.unsplash.com/photo-1550831107-1553da8c8464?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 9,
+      "name": "Clinique Vétérinaire du Lez",
+      "openingHour": 8,
+      "closingHour": 18,
+      "phoneNumber": "555-5876",
+      "city": "Montpellier",
+      "latitude": 43.6119,
+      "longitude": 3.8772,
+      "imageUrl": "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400&h=400&fit=crop"
+    },
+    {
+      "id": 10,
+      "name": "Cabinet des Deux Rives",
+      "openingHour": 9,
+      "closingHour": 19,
+      "phoneNumber": "555-4483",
+      "city": "Strasbourg",
+      "latitude": 48.5734,
+      "longitude": 7.7521,
+      "imageUrl": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop"
+    }
   ]
 }
