@@ -1,6 +1,7 @@
 package com.example.petlink.components
 
 import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -39,6 +40,7 @@ import com.example.petlink.model.Veterinary
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.SubGreen
 import com.example.petlink.ui.theme.White
+import androidx.core.net.toUri
 
 @Composable
 fun VeterinaryCard(veterinary: Veterinary) {
@@ -146,7 +148,15 @@ fun VeterinaryCard(veterinary: Veterinary) {
                         containerColor = MainGreen,
                         contentColor = White
                     ),
-                    onClick = {}
+                    onClick = {
+                        val gmmIntentUri =
+                            "geo:${veterinary.latitude},${veterinary.longitude}?q=${veterinary.latitude},${veterinary.longitude}(${
+                                Uri.encode(veterinary.name)
+                            })".toUri()
+                        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                        mapIntent.setPackage("com.google.android.apps.maps")
+                        ctx.startActivity(mapIntent)
+                    }
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
