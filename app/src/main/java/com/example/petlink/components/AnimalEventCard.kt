@@ -41,8 +41,7 @@ import java.util.Locale
 fun AnimalEventCard(animalEvent: AnimalEvent) {
     ElevatedCard(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(108.dp),
+            .fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = White
         )
