@@ -61,6 +61,7 @@ fun HomeScreen(
             text = "Événements à venir",
             fontSize = 20.sp
         )
+        // TODO Faire les événement à venir avec la Card du carnet de santé
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(24.dp)
         ) {
