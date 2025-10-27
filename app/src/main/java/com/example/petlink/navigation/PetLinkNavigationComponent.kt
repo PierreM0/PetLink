@@ -29,12 +29,15 @@ import com.example.petlink.screens.BlogDetailsScreen
 import com.example.petlink.screens.BlogScreen
 import com.example.petlink.screens.HealthRecordScreen
 import com.example.petlink.screens.HomeScreen
+import com.example.petlink.screens.VeterinaryScreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
 import com.example.petlink.viewmodels.AdoptionAnimalState
 import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
+import com.example.petlink.viewmodels.VeterinaryState
+import com.example.petlink.viewmodels.VeterinaryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("RestrictedApi")
@@ -44,9 +47,11 @@ fun PetLinkNavigationComponent() {
 
     val adoptionAnimalViewModel: AdoptionAnimalViewModel = viewModel()
     val articleViewModel: ArticleViewModel = viewModel()
+    val veterinaryViewModel: VeterinaryViewModel = viewModel()
 
     val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
+    val veterinaryState: VeterinaryState = veterinaryViewModel.stateFlow.collectAsState().value
 
     var topBarName by remember { mutableStateOf(PetLinkScreens.HomeScreen.title) }
 
@@ -142,6 +147,7 @@ fun PetLinkNavigationComponent() {
 
                 composable(PetLinkScreens.VeterinaryScreen.route) {
                     topBarName = PetLinkScreens.VeterinaryScreen.title
+                    VeterinaryScreen(veterinaryState)
                 }
 
                 composable(PetLinkScreens.BlogDetailsScreen.route) {
