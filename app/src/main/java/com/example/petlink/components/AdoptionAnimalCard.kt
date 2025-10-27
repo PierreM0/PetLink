@@ -30,7 +30,7 @@ import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.White
 
 @Composable
-fun AnimalCard(adoptionAnimal: AdoptionAnimal) {
+fun AdoptionAnimalCard(adoptionAnimal: AdoptionAnimal) {
     ElevatedCard (
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(32.dp),
