@@ -55,23 +55,6 @@ fun PetLinkNavigationComponent() {
 
     var topBarName by remember { mutableStateOf(PetLinkScreens.HomeScreen.title) }
 
-    /*
-    LaunchedEffect(Unit) {
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            // backQueue is public in 2.9.x — still valid
-            val stackEntries = controller.currentBackStack.value
-                .filter { it.destination.route != null } // ignore graph-level entries
-            val stackSize = stackEntries.size
-
-            Log.d("PetLinkNav", "🧭 Route: ${destination.route}, Stack size: $stackSize")
-
-            stackEntries.forEachIndexed { index, entry ->
-                Log.d("PetLinkNav", "   [$index] ${entry.destination.route}")
-            }
-        }
-    }
-    */
-
     Scaffold(
         topBar = {
             TopAppBar(
