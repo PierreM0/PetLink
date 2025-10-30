@@ -47,7 +47,10 @@ import com.example.petlink.viewmodels.HealthRecordState
 import com.example.petlink.viewmodels.HealthRecordViewModel
 
 @Composable
-fun HealthRecordScreen(viewModel: HealthRecordViewModel = viewModel()) {
+fun HealthRecordScreen(
+    viewModel: HealthRecordViewModel,
+    onAddAnimal: () -> Unit
+) {
     val state: HealthRecordState = viewModel.stateFlow.collectAsState().value
 
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -135,7 +138,7 @@ fun HealthRecordScreen(viewModel: HealthRecordViewModel = viewModel()) {
         }
 
         FloatingActionButton(
-            onClick = {},
+            onClick = onAddAnimal,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)

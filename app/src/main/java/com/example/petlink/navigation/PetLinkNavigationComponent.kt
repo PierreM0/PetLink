@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
+import com.example.petlink.screens.AddAnimalFormScreen
 import com.example.petlink.screens.AdoptionDetailsScreen
 import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogDetailsScreen
@@ -36,6 +37,7 @@ import com.example.petlink.viewmodels.AdoptionAnimalState
 import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
+import com.example.petlink.viewmodels.HealthRecordViewModel
 import com.example.petlink.viewmodels.VeterinaryState
 import com.example.petlink.viewmodels.VeterinaryViewModel
 
@@ -46,6 +48,7 @@ fun PetLinkNavigationComponent() {
     val navController = rememberNavController()
 
     val adoptionAnimalViewModel: AdoptionAnimalViewModel = viewModel()
+    val healthRecordViewModel: HealthRecordViewModel = viewModel()
     val articleViewModel: ArticleViewModel = viewModel()
     val veterinaryViewModel: VeterinaryViewModel = viewModel()
 
@@ -116,7 +119,25 @@ fun PetLinkNavigationComponent() {
 
                 composable(PetLinkScreens.HealthRecordScreen.route) {
                     topBarName = PetLinkScreens.HealthRecordScreen.title
-                    HealthRecordScreen()
+                    HealthRecordScreen(
+                        healthRecordViewModel,
+                        onAddAnimal = {
+                            navController.navigate(PetLinkScreens.AddAnimalFormScreen.route)
+                        }
+                    )
+                }
+
+                composable(PetLinkScreens.AddAnimalFormScreen.route) {
+                    topBarName = PetLinkScreens.AddAnimalFormScreen.title
+                    AddAnimalFormScreen(
+                        onAdd = { animal ->
+                            healthRecordViewModel.addAnimal(animal)
+                            navController.popBackStack()
+                        },
+                        onCancel = {
+                            navController.popBackStack()
+                        }
+                    )
                 }
 
                 composable(PetLinkScreens.BlogScreen.route) {
@@ -128,13 +149,13 @@ fun PetLinkNavigationComponent() {
                         })
                 }
 
+                composable(PetLinkScreens.BlogDetailsScreen.route) {
+                    BlogDetailsScreen(articleState, onGoBack = { navController.popBackStack() })
+                }
+
                 composable(PetLinkScreens.VeterinaryScreen.route) {
                     topBarName = PetLinkScreens.VeterinaryScreen.title
                     VeterinaryScreen(veterinaryState)
-                }
-
-                composable(PetLinkScreens.BlogDetailsScreen.route) {
-                    BlogDetailsScreen(articleState, onGoBack = { navController.popBackStack() })
                 }
             }
         }
