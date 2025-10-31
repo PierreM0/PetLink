@@ -1,5 +1,6 @@
 package com.example.petlink.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import com.example.petlink.model.Animal
 
 @Composable
@@ -36,8 +38,8 @@ fun AnimalCard(animal: Animal, backgroundColor: Color) {
                 .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AsyncImage(
-                model = animal.pictureUrl,
+            Image(
+                painter = rememberAsyncImagePainter(animal.pictureUri),
                 contentDescription = "Image de ${animal.name}",
                 modifier = Modifier
                     .size(96.dp)

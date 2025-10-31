@@ -1,5 +1,6 @@
 package com.example.petlink.screens
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.Dropdown
 import com.example.petlink.components.InputDateField
+import com.example.petlink.components.InputImageField
 import com.example.petlink.components.InputTextField
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.Animal
@@ -50,6 +52,7 @@ fun AddAnimalFormScreen(
     var name by remember { mutableStateOf(TextFieldValue("")) }
     var species by remember { mutableStateOf("")}
     var birthDate by remember { mutableStateOf<LocalDate?>(null)}
+    var pictureUri by remember { mutableStateOf<Uri?>(null) }
 
     Column(
         modifier = Modifier
@@ -65,7 +68,11 @@ fun AddAnimalFormScreen(
 
         Spacer(Modifier.height(8.dp))
 
-        // TODO image picker
+        InputImageField(
+            selectedImage = pictureUri,
+            onImageSelected = { uri -> pictureUri = uri },
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
 
         Spacer(Modifier.height(32.dp))
 
