@@ -31,6 +31,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.Dropdown
+import com.example.petlink.components.InputDateField
 import com.example.petlink.components.InputTextField
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.Animal
@@ -48,7 +49,7 @@ fun AddAnimalFormScreen(
 ) {
     var name by remember { mutableStateOf(TextFieldValue("")) }
     var species by remember { mutableStateOf("")}
-    var birthDate by remember { mutableStateOf(LocalDate.now())}
+    var birthDate by remember { mutableStateOf<LocalDate?>(null)}
 
     Column(
         modifier = Modifier
@@ -64,7 +65,7 @@ fun AddAnimalFormScreen(
 
         Spacer(Modifier.height(8.dp))
 
-        // TODO input field (image)
+        // TODO image picker
 
         Spacer(Modifier.height(32.dp))
 
@@ -103,6 +104,11 @@ fun AddAnimalFormScreen(
             text = "Date de naissance",
             fontSize = 16.sp,
             color = MainGreen
+        )
+
+        InputDateField(
+            selectedDate = birthDate,
+            onDateSelected = { birthDate = it }
         )
 
         Row(
