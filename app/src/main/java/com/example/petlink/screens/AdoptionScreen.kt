@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -41,7 +42,9 @@ fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: 
     val animalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
 
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
+    var selectedSpeciesIndex by remember { mutableIntStateOf(0) }
     var speciesValue by remember { mutableStateOf(animalState.filters.species.displayName) }
+    var selectedAgeRangeIndex by remember { mutableIntStateOf(0) }
     var ageRangeValue by remember { mutableStateOf(animalState.filters.ageRange.displayName)}
 
     // Contenu principal
@@ -68,22 +71,26 @@ fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: 
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 // Filtre espèces
-                Dropdown(value = speciesValue,
-                    onValueChange = {
-                        value -> speciesValue = value
-                        adoptionAnimalViewModel.setSpeciesFilter(value)
-                                    },
+                Dropdown(
+                    selectedIndex = selectedSpeciesIndex,
+                    onSelectedIndex = {
+                        selectedSpeciesIndex = it
+                        adoptionAnimalViewModel.setSpeciesFilter(AdoptionAnimalSpecies.entries[selectedSpeciesIndex])
+                                      },
                     items = AdoptionAnimalSpecies.getAllDisplayNames(),
-                    modifier = Modifier.weight(1f))
+                    modifier = Modifier.weight(1f)
+                )
 
                 // Filtre âges
-                Dropdown(value = ageRangeValue,
-                    onValueChange = {
-                        value -> ageRangeValue = value
-                        adoptionAnimalViewModel.setAgeRangeFilter(value)
-                                    },
+                Dropdown(
+                    selectedIndex = selectedAgeRangeIndex,
+                    onSelectedIndex = {
+                        selectedAgeRangeIndex = it
+                        adoptionAnimalViewModel.setAgeRangeFilter(AdoptionAnimalAgeRange.entries[selectedAgeRangeIndex])
+                                      },
                     items = AdoptionAnimalAgeRange.getAllDisplayNames(),
-                    modifier = Modifier.weight(1f))
+                    modifier = Modifier.weight(1f)
+                )
             }
         }
 

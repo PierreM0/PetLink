@@ -61,18 +61,18 @@ class AdoptionAnimalViewModel : ViewModel() {
         )
     }
 
-    fun setSpeciesFilter(species: String) {
+    fun setSpeciesFilter(filter: AdoptionAnimalSpecies) {
         AdoptionAnimalState = AdoptionAnimalState.copy(
             filters = AdoptionAnimalState.filters.copy(
-                species = AdoptionAnimalSpecies.fromDisplayName(species)
+                species = filter
             )
         )
     }
 
-    fun setAgeRangeFilter(ageRange: String) {
+    fun setAgeRangeFilter(filter: AdoptionAnimalAgeRange) {
         AdoptionAnimalState = AdoptionAnimalState.copy(
             filters = AdoptionAnimalState.filters.copy(
-                ageRange = AdoptionAnimalAgeRange.fromDisplayName(ageRange)
+                ageRange = filter
             )
         )
     }

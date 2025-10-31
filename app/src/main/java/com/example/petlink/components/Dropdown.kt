@@ -26,8 +26,12 @@ import androidx.compose.ui.unit.dp
 import com.example.petlink.ui.theme.White
 
 @Composable
-fun Dropdown(modifier: Modifier = Modifier, value: String,
-             onValueChange: (String) -> Unit, items: List<String>) {
+fun Dropdown(
+    selectedIndex: Int,
+    onSelectedIndex: (Int) -> Unit,
+    items: List<String>,
+    modifier: Modifier = Modifier
+) {
     var isExpanded by remember { mutableStateOf(false) }
 
     Box(modifier = modifier) {
@@ -42,7 +46,7 @@ fun Dropdown(modifier: Modifier = Modifier, value: String,
                 modifier = Modifier.padding(16.dp).fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(value)
+                Text(items[selectedIndex])
                 Icon(imageVector = if (isExpanded) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown,
                     contentDescription = if (isExpanded) Icons.Outlined.KeyboardArrowUp.toString() else Icons.Outlined.KeyboardArrowDown.toString())
             }
@@ -51,12 +55,12 @@ fun Dropdown(modifier: Modifier = Modifier, value: String,
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false }
         ) {
-            items.forEach { item ->
+            items.forEachIndexed { index, title ->
                 DropdownMenuItem(
-                    text = { Text(item) },
+                    text = { Text(title) },
                     onClick = {
                         isExpanded = false
-                        onValueChange(item)
+                        onSelectedIndex(index)
                     }
                 )
             }

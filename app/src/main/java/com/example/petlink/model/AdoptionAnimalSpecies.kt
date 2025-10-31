@@ -7,10 +7,6 @@ enum class AdoptionAnimalSpecies(val displayName: String) {
     Bunny("Lapin");
 
     companion object {
-        fun fromDisplayName(name: String): AdoptionAnimalSpecies {
-            return entries.find { it.displayName == name } ?: All
-        }
-
         fun getAllDisplayNames(): List<String> {
             return entries.map { it.displayName }
         }

@@ -22,6 +22,7 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -37,6 +38,7 @@ import com.example.petlink.components.InputImageField
 import com.example.petlink.components.InputTextField
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.Animal
+import com.example.petlink.model.AnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.FormPreviousGray
 import com.example.petlink.ui.theme.MainGreen
@@ -50,7 +52,8 @@ fun AddAnimalFormScreen(
     onCancel: () -> Unit
 ) {
     var name by remember { mutableStateOf(TextFieldValue("")) }
-    var species by remember { mutableStateOf("")}
+    var speciesIndex by remember { mutableIntStateOf(0) }
+    var species by remember { mutableStateOf<AnimalSpecies?>(null)}
     var birthDate by remember { mutableStateOf<LocalDate?>(null)}
     var pictureUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -100,9 +103,12 @@ fun AddAnimalFormScreen(
         Spacer(Modifier.height(8.dp))
 
         Dropdown(
-            value = species,
-            onValueChange = { species = it },
-            items = listOf("Chat", "Chien", "Lapin")
+            selectedIndex = speciesIndex,
+            onSelectedIndex = {
+                speciesIndex = it
+                species = AnimalSpecies.entries[speciesIndex]
+            },
+            items = AnimalSpecies.entries.map { it.displayName }
         )
 
         Spacer(Modifier.height(32.dp))
@@ -140,7 +146,15 @@ fun AddAnimalFormScreen(
                 }
             }
 
-            RawButton(onClick = { }) {
+            RawButton(onClick = {
+                val animal = Animal(
+                    name = name.text,
+                    species = species!!,
+                    birthDate = birthDate!!,
+                    pictureUri = pictureUri!!
+                )
+                onAdd(animal)
+            }) {
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(32.dp))
