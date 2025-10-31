@@ -1,10 +1,10 @@
 package com.example.petlink.components
 
-import android.text.format.DateUtils
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,10 +17,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.example.petlink.ui.theme.White
+import com.example.petlink.utils.toSlashString
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -39,10 +41,12 @@ fun InputDateField(
                 .clip(RoundedCornerShape(16.dp))
                 .fillMaxWidth()
                 .height(44.dp)
-                .background(White)
+                .background(White),
+            contentAlignment = Alignment.CenterStart
         ) {
             Text(
-                text = selectedDate?.toString() ?: "Choisir une date"
+                text = selectedDate?.toSlashString() ?: "Choisir une date",
+                modifier = Modifier.padding(start = 16.dp)
             )
         }
     }

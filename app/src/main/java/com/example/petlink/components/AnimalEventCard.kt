@@ -33,6 +33,7 @@ import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.White
+import com.example.petlink.utils.toFrenchDateString
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -84,7 +85,7 @@ fun AnimalEventCard(animalEvent: AnimalEvent) {
                         )
 
                         Text(
-                            text = animalEvent.date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRENCH)),
+                            text = animalEvent.date.toFrenchDateString(),
                             fontSize = 16.sp,
                             color = SecondaryText
                         )
