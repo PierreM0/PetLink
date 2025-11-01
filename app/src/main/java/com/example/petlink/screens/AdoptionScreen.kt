@@ -43,9 +43,7 @@ fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: 
 
     var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
     var selectedSpeciesIndex by remember { mutableIntStateOf(0) }
-    var speciesValue by remember { mutableStateOf(animalState.filters.species.displayName) }
     var selectedAgeRangeIndex by remember { mutableIntStateOf(0) }
-    var ageRangeValue by remember { mutableStateOf(animalState.filters.ageRange.displayName)}
 
     // Contenu principal
     Column(

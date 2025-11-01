@@ -2,6 +2,7 @@ package com.example.petlink.screens
 
 import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,11 +53,11 @@ fun AddAnimalFormScreen(
     onAdd: (Animal) -> Unit,
     onCancel: () -> Unit
 ) {
-    var name by remember { mutableStateOf(TextFieldValue("")) }
-    var speciesIndex by remember { mutableIntStateOf(0) }
-    var species by remember { mutableStateOf<AnimalSpecies?>(null)}
-    var birthDate by remember { mutableStateOf<LocalDate?>(null)}
     var pictureUri by remember { mutableStateOf<Uri?>(null) }
+    var name by remember { mutableStateOf(TextFieldValue("")) }
+    var speciesIndex: Int by remember { mutableIntStateOf(0) }
+    var species by remember { mutableStateOf(AnimalSpecies.entries[speciesIndex])}
+    var birthDate by remember { mutableStateOf<LocalDate?>(null)}
 
     Column(
         modifier = Modifier
@@ -63,11 +65,19 @@ fun AddAnimalFormScreen(
             .background(BackgroundGreen)
             .padding(24.dp)
     ) {
-        Text(
-            text = "Photo",
-            fontSize = 16.sp,
-            color = MainGreen
-        )
+        Row {
+            Text(
+                text = "Photo",
+                fontSize = 16.sp,
+                color = MainGreen
+            )
+
+            Text(
+                text = " *",
+                fontSize = 16.sp,
+                color = Color.Red
+            )
+        }
 
         Spacer(Modifier.height(8.dp))
 
@@ -79,11 +89,19 @@ fun AddAnimalFormScreen(
 
         Spacer(Modifier.height(32.dp))
 
-        Text(
-            text = "Nom",
-            fontSize = 16.sp,
-            color = MainGreen
-        )
+        Row {
+            Text(
+                text = "Nom",
+                fontSize = 16.sp,
+                color = MainGreen
+            )
+
+            Text(
+                text = " *",
+                fontSize = 16.sp,
+                color = Color.Red
+            )
+        }
 
         Spacer(Modifier.height(8.dp))
 
@@ -104,8 +122,8 @@ fun AddAnimalFormScreen(
 
         Dropdown(
             selectedIndex = speciesIndex,
-            onSelectedIndex = {
-                speciesIndex = it
+            onSelectedIndex = { index ->
+                speciesIndex = index
                 species = AnimalSpecies.entries[speciesIndex]
             },
             items = AnimalSpecies.entries.map { it.displayName }
@@ -123,6 +141,10 @@ fun AddAnimalFormScreen(
             selectedDate = birthDate,
             onDateSelected = { birthDate = it }
         )
+
+        Spacer(Modifier.weight(1f))
+
+        val isFormValid = !name.text.isBlank() && pictureUri != null
 
         Row(
             modifier = Modifier
@@ -146,19 +168,24 @@ fun AddAnimalFormScreen(
                 }
             }
 
-            RawButton(onClick = {
-                val animal = Animal(
-                    name = name.text,
-                    species = species!!,
-                    birthDate = birthDate!!,
-                    pictureUri = pictureUri!!
-                )
-                onAdd(animal)
-            }) {
+            RawButton(
+                onClick = {
+                    val animal = Animal(
+                        name = name.text,
+                        species = species,
+                        birthDate = birthDate,
+                        pictureUri = pictureUri!!
+                    )
+                    onAdd(animal)
+                },
+                enabled = isFormValid
+            ) {
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(32.dp))
-                        .background(MainGreen)
+                        .background(color =
+                            if (isFormValid) MainGreen
+                            else MainGreen.copy(alpha = 0.3f))
                         .width(150.dp)
                         .height(44.dp),
                     contentAlignment = Alignment.Center
