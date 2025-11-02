@@ -38,6 +38,7 @@ import com.example.petlink.components.AnimalCard
 import com.example.petlink.components.AnimalEventCard
 import com.example.petlink.components.AnimalEventTab
 import com.example.petlink.components.AnimalEventTabItem
+import com.example.petlink.components.HealthRecordFloatingActionButton
 import com.example.petlink.components.RawButton
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
@@ -137,21 +138,12 @@ fun HealthRecordScreen(
             }
         }
 
-        FloatingActionButton(
-            onClick = onAddAnimal,
+        HealthRecordFloatingActionButton(
+            onAddAnimal = onAddAnimal,
+            onAddEvent = {},
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
-                .border(width = 4.dp, color = MainGreen, shape = RoundedCornerShape(32.dp)),
-            containerColor = BackgroundGreen,
-            shape = RoundedCornerShape(32.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = "Ajouter",
-                modifier = Modifier.size(48.dp),
-                tint = MainGreen
-            )
-        }
+        )
     }
 }
