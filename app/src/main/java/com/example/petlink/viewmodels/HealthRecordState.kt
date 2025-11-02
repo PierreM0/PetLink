@@ -4,5 +4,6 @@ import com.example.petlink.model.Animal
 
 data class HealthRecordState(
     val animals: List<Animal> = listOf(),
-    val selectedAnimal: Animal? = null
+    val selectedAnimal: Animal? = null,
+    val selectedTabIndex: Int = 0
 )

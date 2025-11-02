@@ -55,8 +55,6 @@ fun HealthRecordScreen(
 ) {
     val state: HealthRecordState = viewModel.stateFlow.collectAsState().value
 
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
-
     Box(
         modifier = Modifier
             .background(BackgroundGreen)
@@ -105,15 +103,15 @@ fun HealthRecordScreen(
                 Spacer(Modifier.height(32.dp))
 
                 AnimalEventTab(
-                    selectedIndex = selectedTabIndex,
-                    onTabSelected = { tabItem ->
-                        selectedTabIndex = AnimalEventTabItem.entries.indexOf(tabItem)
+                    selectedIndex = state.selectedTabIndex,
+                    onTabSelected = {
+                        viewModel.setSelectedTabIndex(AnimalEventTabItem.entries.indexOf(it))
                     }
                 )
 
                 Spacer(Modifier.height(16.dp))
 
-                val selectedTab = AnimalEventTabItem.entries[selectedTabIndex]
+                val selectedTab = AnimalEventTabItem.entries[state.selectedTabIndex]
 
                 Text(
                     text = "${selectedTab.displayName} de ${selectedAnimal.name}",

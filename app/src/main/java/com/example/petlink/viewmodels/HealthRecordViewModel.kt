@@ -47,4 +47,10 @@ class HealthRecordViewModel : ViewModel() {
             selectedAnimal = animal
         )
     }
+
+    fun setSelectedTabIndex(index: Int) {
+        HealthRecordState = HealthRecordState.copy(
+            selectedTabIndex = index
+        )
+    }
 }

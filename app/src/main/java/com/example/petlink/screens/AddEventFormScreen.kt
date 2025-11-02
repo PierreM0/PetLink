@@ -46,7 +46,7 @@ fun AddEventFormScreen(
     onAdd: (AnimalEvent) -> Unit,
     onCancel: () -> Unit
 ) {
-    var selectedTypeIndex by remember { mutableIntStateOf(0) }
+    var selectedTypeIndex by remember { mutableIntStateOf(state.selectedTabIndex) }
     var title by remember { mutableStateOf(TextFieldValue(""))}
     var location by remember { mutableStateOf(TextFieldValue(""))}
     var date by remember { mutableStateOf<LocalDate?>(null)}
