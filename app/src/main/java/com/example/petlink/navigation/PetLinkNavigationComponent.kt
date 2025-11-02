@@ -24,6 +24,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AddAnimalFormScreen
+import com.example.petlink.screens.AddEventFormScreen
 import com.example.petlink.screens.AdoptionDetailsScreen
 import com.example.petlink.screens.AdoptionScreen
 import com.example.petlink.screens.BlogDetailsScreen
@@ -37,6 +38,7 @@ import com.example.petlink.viewmodels.AdoptionAnimalState
 import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
+import com.example.petlink.viewmodels.HealthRecordState
 import com.example.petlink.viewmodels.HealthRecordViewModel
 import com.example.petlink.viewmodels.VeterinaryState
 import com.example.petlink.viewmodels.VeterinaryViewModel
@@ -53,6 +55,7 @@ fun PetLinkNavigationComponent() {
     val veterinaryViewModel: VeterinaryViewModel = viewModel()
 
     val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
+    val healthRecordState: HealthRecordState = healthRecordViewModel.stateFlow.collectAsState().value
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
     val veterinaryState: VeterinaryState = veterinaryViewModel.stateFlow.collectAsState().value
 
@@ -123,6 +126,9 @@ fun PetLinkNavigationComponent() {
                         healthRecordViewModel,
                         onAddAnimal = {
                             navController.navigate(PetLinkScreens.AddAnimalFormScreen.route)
+                        },
+                        onAddEvent = {
+                            navController.navigate(PetLinkScreens.AddEventFormScreen.route)
                         }
                     )
                 }
@@ -132,6 +138,20 @@ fun PetLinkNavigationComponent() {
                     AddAnimalFormScreen(
                         onAdd = { animal ->
                             healthRecordViewModel.addAnimal(animal)
+                            navController.popBackStack()
+                        },
+                        onCancel = {
+                            navController.popBackStack()
+                        }
+                    )
+                }
+
+                composable(PetLinkScreens.AddEventFormScreen.route) {
+                    topBarName = PetLinkScreens.AddEventFormScreen.title
+                    AddEventFormScreen(
+                        healthRecordState,
+                        onAdd = { event ->
+                            healthRecordViewModel.addEventToSelectedAnimal(event)
                             navController.popBackStack()
                         },
                         onCancel = {

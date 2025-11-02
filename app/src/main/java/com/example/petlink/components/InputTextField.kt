@@ -14,10 +14,11 @@ import com.example.petlink.ui.theme.White
 @Composable
 fun InputTextField(
     value: TextFieldValue,
-    onValueChange: (TextFieldValue) -> Unit
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     TextField(
-        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)),
+        modifier = modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)),
         value = value,
         onValueChange = onValueChange,
         colors = TextFieldDefaults.colors(

@@ -2,10 +2,10 @@ package com.example.petlink.model
 
 import java.time.LocalDate
 
-enum class AnimalEventType {
-    Visit,
-    Booster,
-    Vaccine
+enum class AnimalEventType(val displayName: String) {
+    Visit("Visite"),
+    Booster("Rappel"),
+    Vaccine("Vaccin")
 }
 
 data class AnimalEvent(

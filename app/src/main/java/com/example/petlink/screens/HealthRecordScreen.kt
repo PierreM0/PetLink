@@ -50,7 +50,8 @@ import com.example.petlink.viewmodels.HealthRecordViewModel
 @Composable
 fun HealthRecordScreen(
     viewModel: HealthRecordViewModel,
-    onAddAnimal: () -> Unit
+    onAddAnimal: () -> Unit,
+    onAddEvent: () -> Unit
 ) {
     val state: HealthRecordState = viewModel.stateFlow.collectAsState().value
 
@@ -139,8 +140,9 @@ fun HealthRecordScreen(
         }
 
         HealthRecordFloatingActionButton(
+            viewModel = viewModel,
             onAddAnimal = onAddAnimal,
-            onAddEvent = {},
+            onAddEvent = onAddEvent,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)

@@ -16,6 +16,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,16 +26,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.ui.theme.BackgroundGreen
+import com.example.petlink.ui.theme.Black
 import com.example.petlink.ui.theme.MainGreen
+import com.example.petlink.viewmodels.HealthRecordViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HealthRecordFloatingActionButton(
+    viewModel: HealthRecordViewModel,
     onAddAnimal: () -> Unit,
     onAddEvent: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val state = viewModel.stateFlow.collectAsState().value
+
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
@@ -80,16 +86,22 @@ fun HealthRecordFloatingActionButton(
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
-                RawButton(onClick = {
-                    scope.launch {
-                        sheetState.hide()
-                        showBottomSheet = false
-                    }
-                    onAddEvent()
-                }) {
+                RawButton(
+                    onClick = {
+                        scope.launch {
+                            sheetState.hide()
+                            showBottomSheet = false
+                        }
+                        onAddEvent()
+                    },
+                    enabled = state.selectedAnimal != null
+                ) {
                     Text(
                         text = "Ajouter un événement",
                         fontSize = 24.sp,
+                        color =
+                            if (state.selectedAnimal != null) Black
+                            else Black.copy(alpha = 0.3f),
                         modifier = Modifier.padding(16.dp)
                     )
                 }
