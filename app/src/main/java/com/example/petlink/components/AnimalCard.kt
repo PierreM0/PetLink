@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -43,7 +44,8 @@ fun AnimalCard(animal: Animal, backgroundColor: Color) {
                 contentDescription = "Image de ${animal.name}",
                 modifier = Modifier
                     .size(96.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(16.dp)),
+                contentScale = ContentScale.FillBounds
             )
 
             Text(

@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.petlink.ui.theme.BackgroundGreen
@@ -44,7 +45,8 @@ fun InputImageField(
                 modifier = Modifier
                     .size(128.dp)
                     .shadow(elevation = 8.dp, shape = RoundedCornerShape(16.dp))
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(16.dp)),
+                contentScale = ContentScale.FillBounds
             )
         } ?: run {
             Box(
