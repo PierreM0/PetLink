@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.Dropdown
+import com.example.petlink.components.FormButtons
 import com.example.petlink.components.InputDateField
 import com.example.petlink.components.InputTextField
 import com.example.petlink.components.RawButton
@@ -170,58 +171,21 @@ fun AddEventFormScreen(
         val isFormValid = title.text.isNotBlank() && location.text.isNotBlank()
                 && date != null
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            RawButton(onClick = onCancel) {
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(32.dp))
-                        .background(FormPreviousGray)
-                        .width(150.dp)
-                        .height(44.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Annuler",
-                        fontSize = 24.sp,
-                        color = MainGreen
-                    )
-                }
-            }
-
-            RawButton(
-                onClick = {
-                    val event = AnimalEvent(
-                        type = AnimalEventType.entries[selectedTypeIndex],
-                        title = title.text,
-                        localisation = location.text,
-                        date = date!!,
-                        description = description.text
-                    )
-                    onAdd(event)
-                },
-                enabled = isFormValid
-            ) {
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(32.dp))
-                        .background(color =
-                            if (isFormValid) MainGreen
-                            else MainGreen.copy(alpha = 0.3f))
-                        .width(150.dp)
-                        .height(44.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Ajouter",
-                        fontSize = 24.sp,
-                        color = White
-                    )
-                }
-            }
-        }
+        FormButtons(
+            onPrevious = onCancel,
+            onNext = {
+                val event = AnimalEvent(
+                    type = AnimalEventType.entries[selectedTypeIndex],
+                    title = title.text,
+                    localisation = location.text,
+                    date = date!!,
+                    description = description.text
+                )
+                onAdd(event)
+            },
+            prevButtonText = "Annuler",
+            nextButtonText = "Ajouter",
+            nextButtonEnabled = isFormValid
+        )
     }
 }

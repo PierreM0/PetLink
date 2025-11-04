@@ -35,6 +35,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.Dropdown
+import com.example.petlink.components.FormButtons
 import com.example.petlink.components.InputDateField
 import com.example.petlink.components.InputImageField
 import com.example.petlink.components.InputTextField
@@ -147,57 +148,20 @@ fun AddAnimalFormScreen(
 
         val isFormValid = !name.text.isBlank() && pictureUri != null
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            RawButton(onClick = onCancel) {
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(32.dp))
-                        .background(FormPreviousGray)
-                        .width(150.dp)
-                        .height(44.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Annuler",
-                        fontSize = 24.sp,
-                        color = MainGreen
-                    )
-                }
-            }
-
-            RawButton(
-                onClick = {
-                    val animal = Animal(
-                        name = name.text,
-                        species = species,
-                        birthDate = birthDate,
-                        pictureUri = pictureUri!!
-                    )
-                    onAdd(animal)
-                },
-                enabled = isFormValid
-            ) {
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(32.dp))
-                        .background(color =
-                            if (isFormValid) MainGreen
-                            else MainGreen.copy(alpha = 0.3f))
-                        .width(150.dp)
-                        .height(44.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Ajouter",
-                        fontSize = 24.sp,
-                        color = White
-                    )
-                }
-            }
-        }
+        FormButtons(
+            onPrevious = onCancel,
+            onNext = {
+                val animal = Animal(
+                    name = name.text,
+                    species = species,
+                    birthDate = birthDate,
+                    pictureUri = pictureUri!!
+                )
+                onAdd(animal)
+            },
+            prevButtonText = "Annuler",
+            nextButtonText = "Ajouter",
+            nextButtonEnabled = isFormValid
+        )
     }
 }
