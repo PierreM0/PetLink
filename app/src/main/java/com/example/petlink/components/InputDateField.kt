@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
@@ -31,7 +32,9 @@ import java.time.ZoneId
 @Composable
 fun InputDateField(
     selectedDate: LocalDate?,
-    onDateSelected: (LocalDate?) -> Unit
+    onDateSelected: (LocalDate?) -> Unit,
+    minDate: LocalDate? = null,
+    maxDate: LocalDate? = null
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -52,11 +55,23 @@ fun InputDateField(
     }
 
     if (showDialog) {
+        val selectableDates = object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                val date = Instant.ofEpochMilli(utcTimeMillis)
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
+                val afterMin = minDate?.let { date >= it } ?: true
+                val beforeMax = maxDate?.let { date <= it } ?: true
+                return afterMin && beforeMax
+            }
+        }
+
         val datePickerState = rememberDatePickerState(
             initialSelectedDateMillis = selectedDate
                 ?.atStartOfDay(ZoneId.systemDefault())
                 ?.toInstant()
-                ?.toEpochMilli()
+                ?.toEpochMilli(),
+            selectableDates = selectableDates
         )
 
         DatePickerDialog(

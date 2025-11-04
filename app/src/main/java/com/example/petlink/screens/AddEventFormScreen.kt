@@ -146,7 +146,8 @@ fun AddEventFormScreen(
 
         InputDateField(
             selectedDate = date,
-            onDateSelected = { date = it }
+            onDateSelected = { date = it },
+            minDate = LocalDate.now()
         )
 
         Spacer(Modifier.height(32.dp))

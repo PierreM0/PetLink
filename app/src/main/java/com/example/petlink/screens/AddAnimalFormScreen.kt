@@ -139,7 +139,8 @@ fun AddAnimalFormScreen(
 
         InputDateField(
             selectedDate = birthDate,
-            onDateSelected = { birthDate = it }
+            onDateSelected = { birthDate = it },
+            maxDate = LocalDate.now()
         )
 
         Spacer(Modifier.weight(1f))
