@@ -81,7 +81,7 @@ class VeterinaryViewModel: ViewModel() {
                     parameters.append("format", "json")
                     parameters.append("limit", "1")
                 }
-                headers.append("User-Agent", "CityLookupApp/1.0")
+                headers.append("User-Agent", "PetLink/1.0")
             }.body()
 
             if (response.isNotEmpty()) {
