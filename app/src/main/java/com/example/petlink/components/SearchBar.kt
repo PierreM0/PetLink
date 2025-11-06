@@ -1,7 +1,5 @@
 package com.example.petlink.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Search
@@ -11,16 +9,14 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.dp
 import com.example.petlink.ui.theme.White
 
 @Composable
 fun SearchBar(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit,
-              placeholderText: String, isLocationSearch: Boolean) {
+              placeholderText: String, isLocationSearch: Boolean, modifier : Modifier) {
     TextField(
-        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)),
+        modifier = modifier,
         value = value,
         onValueChange = onValueChange,
         placeholder = { Text(placeholderText) },
