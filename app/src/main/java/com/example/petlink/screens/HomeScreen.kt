@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.AdoptionAnimalCard
+import com.example.petlink.components.AnimalEventCard
 import com.example.petlink.components.ArticleCard
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.AdoptionAnimal
@@ -38,9 +39,11 @@ import com.example.petlink.viewmodels.AdoptionAnimalState
 import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
+import com.example.petlink.viewmodels.HealthRecordViewModel
 
 @Composable
 fun HomeScreen(
+    healthRecordViewModel: HealthRecordViewModel,
     articleViewModel: ArticleViewModel,
     adoptionAnimalViewModel: AdoptionAnimalViewModel,
     onArticleDetails: (Article) -> Unit,
@@ -62,25 +65,13 @@ fun HomeScreen(
             text = "Événements à venir",
             fontSize = 20.sp
         )
-        // TODO Faire les événement à venir avec la Card du carnet de santé
+
+        val upcomingEvents = healthRecordViewModel.getUpcomingEvents(3)
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            items(4) {
-                ElevatedCard(
-                    modifier = Modifier
-                        .height(120.dp)
-                        .width(300.dp),
-                    colors = CardDefaults.cardColors(White),
-                    shape = RoundedCornerShape(32.dp)
-                ) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("Exemple")
-                    }
-                }
+            items(upcomingEvents) { event ->
+                AnimalEventCard(event)
             }
         }
 

@@ -86,7 +86,8 @@ fun PetLinkNavigationComponent() {
             NavHost(navController = navController, startDestination = PetLinkScreens.HomeScreen.route) {
                 composable(PetLinkScreens.HomeScreen.route) {
                     topBarName = PetLinkScreens.HomeScreen.title
-                    HomeScreen(articleViewModel,
+                    HomeScreen(healthRecordViewModel,
+                        articleViewModel,
                         adoptionAnimalViewModel,
                         onArticleDetails = { article ->
                             articleViewModel.setSelectedArticle(article)
