@@ -19,10 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.components.AdoptionAnimalCard
-import com.example.petlink.components.AnimalEventCard
 import com.example.petlink.components.ArticleCard
 import com.example.petlink.components.HomeAnimalEventCard
 import com.example.petlink.components.RawButton
@@ -62,11 +62,24 @@ fun HomeScreen(
         )
 
         val upcomingEvents = healthRecordViewModel.getUpcomingEvents(3)
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
-            items(upcomingEvents) { event ->
-                HomeAnimalEventCard(event)
+        if (upcomingEvents.isNotEmpty()) {
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                items(upcomingEvents) { event ->
+                    HomeAnimalEventCard(event)
+                }
+            }
+        }
+        else {
+            Box(
+                modifier = Modifier.height(144.dp).fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Aucun événement",
+                    textAlign = TextAlign.Center
+                )
             }
         }
 

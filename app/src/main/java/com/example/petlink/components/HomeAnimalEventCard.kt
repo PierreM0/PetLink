@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,15 +27,19 @@ import com.example.petlink.R
 import com.example.petlink.model.AnimalEvent
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
+import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.SubGreen
 import com.example.petlink.ui.theme.White
-import com.example.petlink.utils.toSlashString
+import com.example.petlink.utils.toFrenchDateString
 
 @Composable
 fun HomeAnimalEventCard(
     animalEvent: AnimalEvent
 ) {
     ElevatedCard(
+        modifier = Modifier
+            .height(144.dp)
+            .defaultMinSize(minWidth = 256.dp),
         colors = CardDefaults.cardColors(
             containerColor = White
         )
@@ -56,19 +63,28 @@ fun HomeAnimalEventCard(
                 )
             }
 
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
+            Column {
                 Text(
                     text = animalEvent.title,
-                    fontSize = 16.sp,
+                    fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold
                 )
 
+                Spacer(Modifier.height(4.dp))
+
                 Text(
-                    text = "${animalEvent.date.toSlashString()} - ${animalEvent.localisation}",
+                    text = animalEvent.localisation,
+                    color = SecondaryText
+                )
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = animalEvent.date.toFrenchDateString(),
                     color = SubGreen
                 )
+
+                Spacer(Modifier.height(8.dp))
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
