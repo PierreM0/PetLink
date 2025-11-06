@@ -10,14 +10,33 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.petlink.R
 import com.example.petlink.navigation.PetLinkScreens
 import com.example.petlink.ui.theme.LightGray
+import com.example.petlink.ui.theme.MainGreen
+
+data class BottomNavItem(
+    val iconRes: Int,
+    val contentDescription: String,
+    val route: String
+)
 
 @Composable
-fun BottomNavigationBar(onIconClick: (String) -> Unit) {
+fun BottomNavigationBar(
+    currentRoute: String?,
+    onIconClick: (String) -> Unit
+) {
+    val navItems = listOf(
+        BottomNavItem(R.drawable.ic_home, "Menu principal", PetLinkScreens.HomeScreen.route),
+        BottomNavItem(R.drawable.ic_adoption, "Espace adoption", PetLinkScreens.AdoptionScreen.route),
+        BottomNavItem(R.drawable.ic_carnet_sante, "Carnet de santé", PetLinkScreens.HealthRecordScreen.route),
+        BottomNavItem(R.drawable.ic_blog, "Blog", PetLinkScreens.BlogScreen.route),
+        BottomNavItem(R.drawable.ic_veterinaires, "Vétérinaires", PetLinkScreens.VeterinaryScreen.route)
+    )
+
     BottomAppBar(
         modifier = Modifier.background(LightGray)
     ) {
@@ -25,44 +44,17 @@ fun BottomNavigationBar(onIconClick: (String) -> Unit) {
             modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            IconButton(onClick = { onIconClick(PetLinkScreens.HomeScreen.route) }) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_home),
-                    contentDescription = "Menu principal",
-                    modifier = Modifier.size(32.dp)
-                )
-            }
+            navItems.forEach { item ->
+                val iconColor = if (item.route == currentRoute) MainGreen else Color.Black
 
-            IconButton(onClick = { onIconClick(PetLinkScreens.AdoptionScreen.route) }) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_adoption),
-                    contentDescription = "Espace adoption",
-                    modifier = Modifier.size(32.dp)
-                )
-            }
-
-            IconButton(onClick = { onIconClick(PetLinkScreens.HealthRecordScreen.route) }) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_carnet_sante),
-                    contentDescription = "Carnet de santé",
-                    modifier = Modifier.size(32.dp)
-                )
-            }
-
-            IconButton(onClick = { onIconClick(PetLinkScreens.BlogScreen.route) }) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_blog),
-                    contentDescription = "Blog",
-                    modifier = Modifier.size(32.dp)
-                )
-            }
-
-            IconButton(onClick = { onIconClick(PetLinkScreens.VeterinaryScreen.route) }) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_veterinaires),
-                    contentDescription = "Vétérinaires",
-                    modifier = Modifier.size(32.dp)
-                )
+                IconButton(onClick = { onIconClick(item.route) }) {
+                    Icon(
+                        painter = painterResource(item.iconRes),
+                        contentDescription = item.contentDescription,
+                        tint = iconColor,
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
             }
         }
     }

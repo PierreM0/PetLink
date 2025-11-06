@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.petlink.components.BottomNavigationBar
 import com.example.petlink.screens.AddAnimalFormScreen
@@ -47,6 +48,7 @@ import com.example.petlink.viewmodels.VeterinaryViewModel
 @Composable
 fun PetLinkNavigationComponent() {
     val navController = rememberNavController()
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 
     val adoptionAnimalViewModel: AdoptionAnimalViewModel = viewModel()
     val healthRecordViewModel: HealthRecordViewModel = viewModel()
@@ -75,7 +77,9 @@ fun PetLinkNavigationComponent() {
                 )
             )
         },
-        bottomBar = { BottomNavigationBar(onIconClick = { route ->
+        bottomBar = { BottomNavigationBar(
+            currentRoute = currentRoute,
+            onIconClick = { route ->
             navController.popBackStack(route, true)
             navController.navigate(route)
         }) }
