@@ -40,7 +40,7 @@ fun BlogDetailsScreen(articleState: ArticleState, onGoBack : () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(BackgroundGreen)
-            .padding(horizontal = 24.dp)
+            .padding(horizontal = 24.dp, )
     ) {
         IconButton(onClick = onGoBack) {
             Icon(
@@ -52,7 +52,9 @@ fun BlogDetailsScreen(articleState: ArticleState, onGoBack : () -> Unit) {
         }
         article?.let { article ->
             Column(
-                modifier = Modifier.verticalScroll(rememberScrollState())
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(bottom = 24.dp)
             ){
                 Column(
                     modifier = Modifier
