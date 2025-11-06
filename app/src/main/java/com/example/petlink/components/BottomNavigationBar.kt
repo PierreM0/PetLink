@@ -1,6 +1,5 @@
 package com.example.petlink.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,7 +37,7 @@ fun BottomNavigationBar(
     )
 
     BottomAppBar(
-        modifier = Modifier.background(LightGray)
+        containerColor = LightGray
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
