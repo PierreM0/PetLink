@@ -31,7 +31,7 @@ import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.White
-import com.example.petlink.utils.toFrenchDateString
+import com.example.petlink.utils.toSlashString
 
 @Composable
 fun AnimalEventCard(animalEvent: AnimalEvent) {
@@ -80,7 +80,7 @@ fun AnimalEventCard(animalEvent: AnimalEvent) {
                         )
 
                         Text(
-                            text = animalEvent.date.toFrenchDateString(),
+                            text = animalEvent.date.toSlashString(),
                             fontSize = 16.sp,
                             color = SecondaryText
                         )
