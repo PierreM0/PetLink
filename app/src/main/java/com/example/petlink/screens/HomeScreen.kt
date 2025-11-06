@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.petlink.components.AdoptionAnimalCard
 import com.example.petlink.components.AnimalEventCard
 import com.example.petlink.components.ArticleCard
+import com.example.petlink.components.HomeAnimalEventCard
 import com.example.petlink.components.RawButton
 import com.example.petlink.model.AdoptionAnimal
 import com.example.petlink.model.Article
@@ -45,7 +46,6 @@ fun HomeScreen(
     onShowEverything: (String) -> Unit,
     onAnimalDetails: (AdoptionAnimal) -> Unit
 ) {
-
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
     val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
 
@@ -66,7 +66,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             items(upcomingEvents) { event ->
-                AnimalEventCard(event)
+                HomeAnimalEventCard(event)
             }
         }
 
