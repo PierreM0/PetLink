@@ -7,10 +7,6 @@ enum class AdoptionAnimalAgeRange(val displayName: String, val minAge: Int, val 
     Senior("Senior (9+ ans)", 9, Int.MAX_VALUE);
 
     companion object {
-        fun fromDisplayName(name: String): AdoptionAnimalAgeRange {
-            return entries.find { it.displayName == name } ?: All
-        }
-
         fun getAllDisplayNames(): List<String> {
             return entries.map { it.displayName }
         }
