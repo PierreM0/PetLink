@@ -6,7 +6,6 @@ import com.example.petlink.model.AnimalEvent
 
 @Composable
 fun HomeAnimalEventCard(
-    animal: Animal,
     animalEvent: AnimalEvent
 ) {
 
