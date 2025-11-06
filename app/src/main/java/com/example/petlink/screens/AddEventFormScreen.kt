@@ -176,6 +176,7 @@ fun AddEventFormScreen(
             onNext = {
                 val event = AnimalEvent(
                     type = AnimalEventType.entries[selectedTypeIndex],
+                    animal = state.selectedAnimal!!,
                     title = title.text,
                     localisation = location.text,
                     date = date!!,

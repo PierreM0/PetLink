@@ -110,15 +110,3 @@ fun AnimalEventCard(animalEvent: AnimalEvent) {
         }
     }
 }
-
-@Preview
-@Composable
-fun AnimalEventCardPreview() {
-    val animalEvent = AnimalEvent(
-        type = AnimalEventType.Visit,
-        title = "Consultation",
-        localisation = "Metz",
-        date = LocalDate.now(),
-        description = "Vaccin contre la rage à effectuer immédiatement")
-    AnimalEventCard(animalEvent)
-}
