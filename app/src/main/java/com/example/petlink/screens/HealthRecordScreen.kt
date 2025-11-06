@@ -74,11 +74,16 @@ fun HealthRecordScreen(
 
             val animals = state.animals
             if (animals.isEmpty()) {
+                Spacer(Modifier.weight(1f))
+
                 Text(
                     text = "Vous n'avez pas ajouté d'animal",
-                    modifier = Modifier.fillMaxSize(),
-                    textAlign = TextAlign.Center
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp
                 )
+
+                Spacer(Modifier.weight(2f))
             }
             else {
                 LazyRow(
@@ -97,43 +102,57 @@ fun HealthRecordScreen(
                         }
                     }
                 }
-            }
 
-            state.selectedAnimal?.let { selectedAnimal ->
-                Spacer(Modifier.height(32.dp))
+                state.selectedAnimal?.let { selectedAnimal ->
+                    Spacer(Modifier.height(32.dp))
 
-                AnimalEventTab(
-                    selectedIndex = state.selectedTabIndex,
-                    onTabSelected = {
-                        viewModel.setSelectedTabIndex(AnimalEventTabItem.entries.indexOf(it))
+                    AnimalEventTab(
+                        selectedIndex = state.selectedTabIndex,
+                        onTabSelected = {
+                            viewModel.setSelectedTabIndex(AnimalEventTabItem.entries.indexOf(it))
+                        }
+                    )
+
+                    Spacer(Modifier.height(16.dp))
+
+                    val selectedTab = AnimalEventTabItem.entries[state.selectedTabIndex]
+
+                    Text(
+                        text = "${selectedTab.displayName} de ${selectedAnimal.name}",
+                        fontSize = 20.sp
+                    )
+
+                    Spacer(Modifier.height(16.dp))
+
+                    val events = selectedAnimal.events.filter { it.type == selectedTab.type }
+                    if (events.isNotEmpty()) {
+                        LazyColumn(
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            items(events) { event ->
+                                AnimalEventCard(event)
+                            }
+                        }
                     }
-                )
+                    else {
+                        Spacer(Modifier.weight(1f))
 
-                Spacer(Modifier.height(16.dp))
+                        Text(
+                            text = "Aucun résultat",
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            fontSize = 16.sp
+                        )
 
-                val selectedTab = AnimalEventTabItem.entries[state.selectedTabIndex]
-
-                Text(
-                    text = "${selectedTab.displayName} de ${selectedAnimal.name}",
-                    fontSize = 20.sp
-                )
-
-                Spacer(Modifier.height(16.dp))
-
-                val events = selectedAnimal.events.filter { it.type == selectedTab.type }
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(events) { event ->
-                        AnimalEventCard(event)
+                        Spacer(Modifier.weight(1f))
                     }
+                } ?: run {
+                    Text(
+                        text = "Sélectionnez un animal pour consulter ses rendez-vous",
+                        modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
+                        textAlign = TextAlign.Center
+                    )
                 }
-            } ?: run {
-                Text(
-                    text = "Sélectionnez un animal pour consulter ses rendez-vous",
-                    modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
-                    textAlign = TextAlign.Center
-                )
             }
         }
 
