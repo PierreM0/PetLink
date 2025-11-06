@@ -23,20 +23,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petlink.R
 import com.example.petlink.model.AnimalEvent
-import com.example.petlink.model.AnimalEventType
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.SecondaryText
 import com.example.petlink.ui.theme.White
 import com.example.petlink.utils.toFrenchDateString
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 @Composable
 fun AnimalEventCard(animalEvent: AnimalEvent) {
