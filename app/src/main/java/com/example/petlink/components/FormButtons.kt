@@ -1,6 +1,7 @@
 package com.example.petlink.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -40,7 +41,12 @@ fun FormButtons(
                     .clip(RoundedCornerShape(32.dp))
                     .background(FormPreviousGray)
                     .width(150.dp)
-                    .height(44.dp),
+                    .height(44.dp)
+                    .border(
+                        width = 2.dp,
+                        color = MainGreen,
+                        shape = RoundedCornerShape(32.dp)
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
