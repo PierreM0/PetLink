@@ -40,7 +40,6 @@ import com.example.petlink.viewmodels.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 import com.example.petlink.viewmodels.HealthRecordState
 import com.example.petlink.viewmodels.HealthRecordViewModel
-import com.example.petlink.viewmodels.VeterinaryState
 import com.example.petlink.viewmodels.VeterinaryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +56,6 @@ fun PetLinkNavigationComponent() {
     val adoptionAnimalState: AdoptionAnimalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
     val healthRecordState: HealthRecordState = healthRecordViewModel.stateFlow.collectAsState().value
     val articleState: ArticleState = articleViewModel.stateFlow.collectAsState().value
-    val veterinaryState: VeterinaryState = veterinaryViewModel.stateFlow.collectAsState().value
 
     var topBarName by remember { mutableStateOf(PetLinkScreens.HomeScreen.title) }
 
@@ -175,7 +173,7 @@ fun PetLinkNavigationComponent() {
 
                 composable(PetLinkScreens.VeterinaryScreen.route) {
                     topBarName = PetLinkScreens.VeterinaryScreen.title
-                    VeterinaryScreen(veterinaryState)
+                    VeterinaryScreen(veterinaryViewModel)
                 }
             }
         }
