@@ -11,7 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.DateRange
+import androidx.compose.material.icons.automirrored.outlined.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -26,10 +26,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.example.petlink.R
 import com.example.petlink.components.SearchBar
 import com.example.petlink.components.VeterinaryCard
 import com.example.petlink.ui.theme.BackgroundGreen
@@ -80,8 +78,8 @@ fun VeterinaryScreen(veterinaryViewModel: VeterinaryViewModel) {
                 enabled = isButtonEnabled
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_near_me),
-                    contentDescription = Icons.Outlined.DateRange.toString(),
+                    imageVector = Icons.AutoMirrored.Outlined.Send,
+                    contentDescription = Icons.AutoMirrored.Outlined.Send.toString(),
                 )
             }
         }

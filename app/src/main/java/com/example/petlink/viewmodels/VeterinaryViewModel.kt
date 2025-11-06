@@ -3,19 +3,11 @@ package com.example.petlink.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petlink.api.PetLinkAPI
-import com.example.petlink.mapper.CityMapper
-import com.example.petlink.model.CityDTO
 import com.example.petlink.network.StateManager
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
-import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.pow
@@ -66,34 +58,6 @@ class VeterinaryViewModel: ViewModel() {
         return r * c
     }
     suspend fun getLatAndLongFrom(cityName: String): Pair<Double, Double>? {
-        val client = HttpClient {
-            install(ContentNegotiation) { json(
-                Json {
-                    ignoreUnknownKeys = true
-                }
-            ) }
-        }
-
-        return try {
-            val response: List<CityDTO> = client.get("https://nominatim.openstreetmap.org/search") {
-                url {
-                    parameters.append("q", cityName)
-                    parameters.append("format", "json")
-                    parameters.append("limit", "1")
-                }
-                headers.append("User-Agent", "PetLink/1.0")
-            }.body()
-
-            if (response.isNotEmpty()) {
-                val cityMapper = CityMapper()
-                val city = cityMapper.mapCityDtoToCity(response.first())
-                Pair(city.latitude, city.longitude)
-            } else null
-        } catch (e: Exception) {
-            println("Ktor Error : ${e.message}")
-            null
-        } finally {
-            client.close()
-        }
+        return PetLinkAPI.getLatAndLongFrom(cityName)
     }
 }

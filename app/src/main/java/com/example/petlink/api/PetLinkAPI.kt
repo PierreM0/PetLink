@@ -2,15 +2,23 @@ package com.example.petlink.api
 
 import com.example.petlink.mapper.AnimalMapper
 import com.example.petlink.mapper.ArticleMapper
+import com.example.petlink.mapper.CityMapper
 import com.example.petlink.mapper.VeterinaryMapper
 import com.example.petlink.model.AdoptionAnimal
 import com.example.petlink.model.AdoptionAnimalDTO
 import com.example.petlink.model.Article
 import com.example.petlink.model.ArticleDTO
+import com.example.petlink.model.CityDTO
 import com.example.petlink.model.Veterinary
 import com.example.petlink.model.VeterinaryDTO
 import com.example.petlink.network.KtorClient
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.get
 import io.ktor.http.HttpMethod
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 
 object PetLinkAPI {
     private lateinit var adoptionAnimals: List<AdoptionAnimal>
@@ -50,5 +58,37 @@ object PetLinkAPI {
         }
 
         return veterinaries
+    }
+
+    suspend fun getLatAndLongFrom(cityName : String): Pair<Double, Double>? {
+        val client = HttpClient {
+            install(ContentNegotiation) { json(
+                Json {
+                    ignoreUnknownKeys = true
+                }
+            ) }
+        }
+
+        return try {
+            val response: List<CityDTO> = client.get("https://nominatim.openstreetmap.org/search") {
+                url {
+                    parameters.append("q", cityName)
+                    parameters.append("format", "json")
+                    parameters.append("limit", "1")
+                }
+                headers.append("User-Agent", "PetLink/1.0")
+            }.body()
+
+            if (response.isNotEmpty()) {
+                val cityMapper = CityMapper()
+                val city = cityMapper.mapCityDtoToCity(response.first())
+                Pair(city.latitude, city.longitude)
+            } else null
+        } catch (e: Exception) {
+            println("Ktor Error : ${e.message}")
+            null
+        } finally {
+            client.close()
+        }
     }
 }
