@@ -46,7 +46,7 @@ fun InputImageField(
                     .size(128.dp)
                     .shadow(elevation = 8.dp, shape = RoundedCornerShape(16.dp))
                     .clip(RoundedCornerShape(16.dp)),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.Crop
             )
         } ?: run {
             Box(

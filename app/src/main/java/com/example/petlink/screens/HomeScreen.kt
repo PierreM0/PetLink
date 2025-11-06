@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -99,8 +100,10 @@ fun HomeScreen(
             )
         }
         if (adoptionAnimalState.isLoading) {
-            Box(modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier.fillMaxWidth().height(144.dp),
+                contentAlignment = Alignment.Center
+            ) {
                 CircularProgressIndicator()
             }
         } else {
@@ -133,10 +136,16 @@ fun HomeScreen(
             )
         }
         if (articleState.isLoading) {
-            Box(modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center) {
+            Spacer(Modifier.weight(1f))
+
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
                 CircularProgressIndicator()
             }
+
+            Spacer(Modifier.weight(1f))
         } else {
             val latestArticle : Article? = articleViewModel.getNewestArticle()
             latestArticle?.let { article ->
