@@ -16,8 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.model.AnimalEvent
-import com.example.petlink.model.AnimalEventType
 import com.example.petlink.ui.theme.FormPreviousGray
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
