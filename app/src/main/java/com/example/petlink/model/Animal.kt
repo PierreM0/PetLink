@@ -10,5 +10,5 @@ data class Animal(
     val species: AnimalSpecies,
     val birthDate: LocalDate?,
     val pictureUri: Uri,
-    val events: List<AnimalEvent> = listOf()
+    val events: MutableList<AnimalEvent> = mutableListOf()
 )

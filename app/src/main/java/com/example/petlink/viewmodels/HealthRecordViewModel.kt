@@ -27,13 +27,8 @@ class HealthRecordViewModel : ViewModel() {
 
     fun addEventToSelectedAnimal(animalEvent: AnimalEvent) {
         HealthRecordState.selectedAnimal?.let { animal ->
-            val updatedAnimal = animal.copy(events = animal.events + animalEvent)
-            HealthRecordState = HealthRecordState.copy(
-                animals = HealthRecordState.animals.map {
-                    if (it.id == animal.id) updatedAnimal else it
-                },
-                selectedAnimal = updatedAnimal
-            )
+            animal.events.add(animalEvent)
+            HealthRecordState = HealthRecordState.copy()
         }
     }
 
