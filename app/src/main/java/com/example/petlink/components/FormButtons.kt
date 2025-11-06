@@ -1,6 +1,7 @@
 package com.example.petlink.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -15,8 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.model.AnimalEvent
-import com.example.petlink.model.AnimalEventType
 import com.example.petlink.ui.theme.FormPreviousGray
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White
@@ -40,7 +39,12 @@ fun FormButtons(
                     .clip(RoundedCornerShape(32.dp))
                     .background(FormPreviousGray)
                     .width(150.dp)
-                    .height(44.dp),
+                    .height(44.dp)
+                    .border(
+                        width = 2.dp,
+                        color = MainGreen,
+                        shape = RoundedCornerShape(32.dp)
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(

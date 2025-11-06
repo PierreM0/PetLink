@@ -1,14 +1,18 @@
 package com.example.petlink.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -39,17 +43,24 @@ fun InputDateField(
     var showDialog by remember { mutableStateOf(false) }
 
     RawButton(onClick = { showDialog = true }) {
-        Box(
+        Row (
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
                 .fillMaxWidth()
                 .height(44.dp)
                 .background(White),
-            contentAlignment = Alignment.CenterStart
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = selectedDate?.toSlashString() ?: "Choisir une date",
                 modifier = Modifier.padding(start = 16.dp)
+            )
+
+            Icon(
+                imageVector = Icons.Outlined.DateRange,
+                contentDescription = "Date",
+                modifier = Modifier.padding(end = 16.dp)
             )
         }
     }
