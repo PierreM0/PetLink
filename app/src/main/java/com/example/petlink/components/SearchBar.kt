@@ -14,7 +14,7 @@ import com.example.petlink.ui.theme.White
 
 @Composable
 fun SearchBar(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit,
-              placeholderText: String, isLocationSearch: Boolean, modifier : Modifier) {
+              placeholderText: String, isLocationSearch: Boolean, modifier : Modifier = Modifier) {
     TextField(
         modifier = modifier,
         value = value,
