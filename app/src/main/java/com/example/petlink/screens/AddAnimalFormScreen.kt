@@ -138,6 +138,8 @@ fun AddAnimalFormScreen(
             color = MainGreen
         )
 
+        Spacer(Modifier.height(8.dp))
+
         InputDateField(
             selectedDate = birthDate,
             onDateSelected = { birthDate = it },
