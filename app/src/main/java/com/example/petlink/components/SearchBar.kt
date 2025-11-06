@@ -17,6 +17,7 @@ fun SearchBar(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit,
               placeholderText: String, isLocationSearch: Boolean, modifier : Modifier = Modifier) {
     TextField(
         modifier = modifier,
+        maxLines = 1,
         value = value,
         onValueChange = onValueChange,
         placeholder = { Text(placeholderText) },
