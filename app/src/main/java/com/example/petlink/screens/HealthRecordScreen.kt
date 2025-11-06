@@ -20,16 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.components.AnimalCard
-import com.example.petlink.components.AnimalEventCard
-import com.example.petlink.components.AnimalEventTab
-import com.example.petlink.components.AnimalEventTabItem
-import com.example.petlink.components.HealthRecordFloatingActionButton
-import com.example.petlink.components.RawButton
+import com.example.petlink.components.cards.AnimalCard
+import com.example.petlink.components.cards.AnimalEventCard
+import com.example.petlink.components.general.AnimalEventTab
+import com.example.petlink.components.general.AnimalEventTabItem
+import com.example.petlink.components.buttons.HealthRecordFloatingActionButton
+import com.example.petlink.components.buttons.RawButton
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.SubGreen
 import com.example.petlink.ui.theme.White
-import com.example.petlink.viewmodels.HealthRecordState
+import com.example.petlink.viewmodels.states.HealthRecordState
 import com.example.petlink.viewmodels.HealthRecordViewModel
 
 @Composable

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.petlink.api.PetLinkAPI
 import com.example.petlink.model.Article
 import com.example.petlink.network.StateManager
+import com.example.petlink.viewmodels.states.ArticleState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

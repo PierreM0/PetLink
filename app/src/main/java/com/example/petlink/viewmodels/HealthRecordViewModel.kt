@@ -1,8 +1,9 @@
 package com.example.petlink.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.example.petlink.model.Animal
-import com.example.petlink.model.AnimalEvent
+import com.example.petlink.model.animal.Animal
+import com.example.petlink.model.animal.AnimalEvent
+import com.example.petlink.viewmodels.states.HealthRecordState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

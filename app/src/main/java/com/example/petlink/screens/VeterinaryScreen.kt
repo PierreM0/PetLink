@@ -31,8 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.components.SearchBar
-import com.example.petlink.components.VeterinaryCard
+import com.example.petlink.components.inputs.SearchBar
+import com.example.petlink.components.cards.VeterinaryCard
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
 import com.example.petlink.ui.theme.White

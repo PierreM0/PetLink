@@ -1,7 +1,7 @@
 package com.example.petlink.mapper
 
 import com.example.petlink.model.City
-import com.example.petlink.model.CityDTO
+import com.example.petlink.model.dto.CityDTO
 
 class CityMapper {
     fun mapCityDtoToCity(cityDto: CityDTO): City {

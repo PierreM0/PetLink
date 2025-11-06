@@ -2,7 +2,7 @@ package com.example.petlink.mapper
 
 import androidx.core.net.toUri
 import com.example.petlink.model.Veterinary
-import com.example.petlink.model.VeterinaryDTO
+import com.example.petlink.model.dto.VeterinaryDTO
 
 class VeterinaryMapper {
     fun mapVeterinaryDtoToVeterinary(veterinaryDto: VeterinaryDTO): Veterinary {

@@ -29,13 +29,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.components.AdoptionAnimalCard
-import com.example.petlink.components.Dropdown
-import com.example.petlink.components.RawButton
-import com.example.petlink.components.SearchBar
-import com.example.petlink.model.AdoptionAnimal
-import com.example.petlink.model.AdoptionAnimalAgeRange
-import com.example.petlink.model.AdoptionAnimalSpecies
+import com.example.petlink.components.cards.AdoptionAnimalCard
+import com.example.petlink.components.inputs.Dropdown
+import com.example.petlink.components.buttons.RawButton
+import com.example.petlink.components.inputs.SearchBar
+import com.example.petlink.model.adoption_animal.AdoptionAnimal
+import com.example.petlink.model.adoption_animal.AdoptionAnimalAgeRange
+import com.example.petlink.model.adoption_animal.AdoptionAnimalSpecies
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 

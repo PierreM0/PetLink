@@ -23,12 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.example.petlink.components.ArticleCard
-import com.example.petlink.components.RawButton
-import com.example.petlink.components.SearchBar
+import com.example.petlink.components.cards.ArticleCard
+import com.example.petlink.components.buttons.RawButton
+import com.example.petlink.components.inputs.SearchBar
 import com.example.petlink.model.Article
 import com.example.petlink.ui.theme.BackgroundGreen
-import com.example.petlink.viewmodels.ArticleState
+import com.example.petlink.viewmodels.states.ArticleState
 
 @Composable
 fun BlogScreen(articleState : ArticleState, onDetails: (Article) -> Unit) {

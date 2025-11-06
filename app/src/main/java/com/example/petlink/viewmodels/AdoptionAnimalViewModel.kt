@@ -3,10 +3,11 @@ package com.example.petlink.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petlink.api.PetLinkAPI
-import com.example.petlink.model.AdoptionAnimal
-import com.example.petlink.model.AdoptionAnimalAgeRange
-import com.example.petlink.model.AdoptionAnimalSpecies
+import com.example.petlink.model.adoption_animal.AdoptionAnimal
+import com.example.petlink.model.adoption_animal.AdoptionAnimalAgeRange
+import com.example.petlink.model.adoption_animal.AdoptionAnimalSpecies
 import com.example.petlink.network.StateManager
+import com.example.petlink.viewmodels.states.AdoptionAnimalState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

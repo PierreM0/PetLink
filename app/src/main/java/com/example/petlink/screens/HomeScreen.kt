@@ -22,18 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.petlink.components.AdoptionAnimalCard
-import com.example.petlink.components.ArticleCard
-import com.example.petlink.components.HomeAnimalEventCard
-import com.example.petlink.components.RawButton
-import com.example.petlink.model.AdoptionAnimal
+import com.example.petlink.components.cards.AdoptionAnimalCard
+import com.example.petlink.components.cards.ArticleCard
+import com.example.petlink.components.cards.HomeAnimalEventCard
+import com.example.petlink.components.buttons.RawButton
+import com.example.petlink.model.adoption_animal.AdoptionAnimal
 import com.example.petlink.model.Article
 import com.example.petlink.navigation.PetLinkScreens
 import com.example.petlink.ui.theme.BackgroundGreen
 import com.example.petlink.ui.theme.MainGreen
-import com.example.petlink.viewmodels.AdoptionAnimalState
+import com.example.petlink.viewmodels.states.AdoptionAnimalState
 import com.example.petlink.viewmodels.AdoptionAnimalViewModel
-import com.example.petlink.viewmodels.ArticleState
+import com.example.petlink.viewmodels.states.ArticleState
 import com.example.petlink.viewmodels.ArticleViewModel
 import com.example.petlink.viewmodels.HealthRecordViewModel
 
