@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -26,8 +27,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.petlink.components.SearchBar
 import com.example.petlink.components.VeterinaryCard
 import com.example.petlink.ui.theme.BackgroundGreen
@@ -43,6 +46,7 @@ fun VeterinaryScreen(veterinaryViewModel: VeterinaryViewModel) {
     var citySearchValue by remember { mutableStateOf(TextFieldValue("") )}
     var searchCityLatLong by remember { mutableStateOf<Pair<Double, Double>?>(null) }
     var isButtonEnabled by remember { mutableStateOf(true) }
+    var lastSearchedCity by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -68,6 +72,8 @@ fun VeterinaryScreen(veterinaryViewModel: VeterinaryViewModel) {
                     scope.launch {
                         isButtonEnabled = false
                         searchCityLatLong = veterinaryViewModel.getLatAndLongFrom(citySearchValue.text)
+                        if(searchCityLatLong?.first != null)
+                            lastSearchedCity = citySearchValue.text
                         isButtonEnabled = true
                     }
                 },
@@ -82,6 +88,13 @@ fun VeterinaryScreen(veterinaryViewModel: VeterinaryViewModel) {
                     contentDescription = Icons.AutoMirrored.Outlined.Send.toString(),
                 )
             }
+        }
+        searchCityLatLong?.let { city ->
+            Text(
+                text = "Résultats proches de \"${lastSearchedCity}\"",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Medium
+            )
         }
         if (veterinaryState.isLoading) {
             Box(modifier = Modifier.fillMaxSize(),
