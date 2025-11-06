@@ -109,7 +109,9 @@ fun HealthRecordScreen(
 
                     Spacer(Modifier.height(16.dp))
 
-                    val events = selectedAnimal.events.filter { it.type == selectedTab.type }
+                    val events = selectedAnimal.events
+                        .filter { it.type == selectedTab.type }
+                        .sortedBy { it.date }
                     if (events.isNotEmpty()) {
                         LazyColumn(
                             verticalArrangement = Arrangement.spacedBy(16.dp)
