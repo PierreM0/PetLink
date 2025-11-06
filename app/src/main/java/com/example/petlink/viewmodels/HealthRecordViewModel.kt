@@ -53,4 +53,15 @@ class HealthRecordViewModel : ViewModel() {
             selectedTabIndex = index
         )
     }
+
+    fun getUpcomingEvents(limit : Int) : List<AnimalEvent> {
+        val events: MutableList<AnimalEvent> = mutableListOf()
+        HealthRecordState.animals.forEach { animal ->
+            animal.events.forEach { event ->
+                events.add(event)
+            }
+        }
+
+        return events.sortedBy { it.date }.take(limit)
+    }
 }
