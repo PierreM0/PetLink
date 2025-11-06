@@ -41,11 +41,11 @@ import com.example.petlink.viewmodels.AdoptionAnimalViewModel
 
 @Composable
 fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: (AdoptionAnimal) -> Unit) {
-    val animalState = adoptionAnimalViewModel.stateFlow.collectAsState().value
+    val state = adoptionAnimalViewModel.stateFlow.collectAsState().value
 
-    var locationSearchValue by remember { mutableStateOf(TextFieldValue("")) }
-    var selectedSpeciesIndex by remember { mutableIntStateOf(0) }
-    var selectedAgeRangeIndex by remember { mutableIntStateOf(0) }
+    var locationSearchValue by remember { mutableStateOf(TextFieldValue(state.filters.location)) }
+    var selectedSpeciesIndex by remember { mutableIntStateOf(AdoptionAnimalSpecies.entries.indexOf(state.filters.species)) }
+    var selectedAgeRangeIndex by remember { mutableIntStateOf(AdoptionAnimalAgeRange.entries.indexOf(state.filters.ageRange)) }
 
     // Contenu principal
     Column(
@@ -99,7 +99,7 @@ fun AdoptionScreen(adoptionAnimalViewModel: AdoptionAnimalViewModel, onDetails: 
         Spacer(Modifier.height(32.dp))
 
         // Contenu principal (loading ou animals)
-        if (animalState.isLoading) {
+        if (state.isLoading) {
             Box(modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
