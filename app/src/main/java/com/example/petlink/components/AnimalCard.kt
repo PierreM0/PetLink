@@ -45,7 +45,7 @@ fun AnimalCard(animal: Animal, backgroundColor: Color) {
                 modifier = Modifier
                     .size(96.dp)
                     .clip(RoundedCornerShape(16.dp)),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.Crop
             )
 
             Text(
