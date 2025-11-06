@@ -10,6 +10,7 @@ enum class AnimalEventType(val displayName: String) {
 
 data class AnimalEvent(
     val type: AnimalEventType,
+    val animal: Animal,
     val title: String,
     val localisation: String,
     val date: LocalDate,

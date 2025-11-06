@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.example.petlink.model.Animal
 
@@ -45,7 +44,7 @@ fun AnimalCard(animal: Animal, backgroundColor: Color) {
                 modifier = Modifier
                     .size(96.dp)
                     .clip(RoundedCornerShape(16.dp)),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.Crop
             )
 
             Text(
